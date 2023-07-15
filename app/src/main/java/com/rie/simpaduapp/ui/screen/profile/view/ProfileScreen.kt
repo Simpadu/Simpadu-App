@@ -87,7 +87,7 @@ fun AppBar(title: String) {
     TopAppBar(
         title = { Text(text = title) },
 //        backgroundColor = GreenPressed,
-        contentColor = Color.White,
+        contentColor = Color.Black,
         elevation = 10.dp
     )
 }

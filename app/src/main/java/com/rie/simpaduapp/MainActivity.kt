@@ -9,10 +9,8 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.rie.simpaduapp.ui.screen.ProfileScreen
-import com.rie.simpaduapp.ui.screen.auth.LoginScreen
-import com.rie.simpaduapp.ui.screen.splashscreen.SplashScreen
+import com.rie.simpaduapp.ui.screen.notification.NotificationScreen
+
 import com.rie.simpaduapp.ui.theme.SimpaduAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,9 +23,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-//                   ProfileScreen()
-//                    LoginScreen()
-//                    SplashScreen()
+
                     SimpaduApp()
 
                 }
