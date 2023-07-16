@@ -31,7 +31,7 @@ fun ProfileScreen( modifier: Modifier = Modifier) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFFC0DBCE))
+                .background(Color(0xFFCDF1E3))
                 .padding(horizontal = 16.dp)
         ) {
             Card(

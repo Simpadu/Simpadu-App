@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -70,28 +71,35 @@ fun CategoryItem(icon: ImageVector, text: String, onClick: () -> Unit) {
 
 @Composable
 fun CategoryList() {
+    val context = LocalContext.current
     Column(
-        verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = Modifier.padding(16.dp)
     ) {
         Row(
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+//            horizontalArrangement = Arrangement.spacedBy(5.dp)
         ) {
             CategoryItem(Icons.Default.Home, "KRS", onClick = { })
+            Spacer(modifier = Modifier.width(4.dp))
             CategoryItem(Icons.Default.Favorite, "KHS", onClick = { })
+            Spacer(modifier = Modifier.width(4.dp))
             CategoryItem(Icons.Default.Settings, "SKM", onClick = { })
+            Spacer(modifier = Modifier.width(4.dp))
             CategoryItem(Icons.Default.Home, "UKT", onClick = { })
         }
         Row(
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+//            horizontalArrangement = Arrangement.spacedBy(5.dp)
         ) {
             CategoryItem(Icons.Default.Favorite, "JADWAL", onClick = { })
+            Spacer(modifier = Modifier.width(4.dp))
             CategoryItem(Icons.Default.Settings, "PRESTASI", onClick = { })
+            Spacer(modifier = Modifier.width(4.dp))
             CategoryItem(Icons.Default.Home, "MAGANG", onClick = { })
+            Spacer(modifier = Modifier.width(4.dp))
             CategoryItem(Icons.Default.Favorite, "WISUDA", onClick = { })
         }
     }
 }
+
 
 @Preview
 @Composable

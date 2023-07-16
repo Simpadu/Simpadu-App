@@ -1,5 +1,6 @@
 package com.rie.simpaduapp.ui.screen.auth
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -26,6 +27,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rie.simpaduapp.R
+import com.rie.simpaduapp.SimpaduActivity
+import com.rie.simpaduapp.ui.screen.profile.view.ChangePasswordActivity
 
 
 @Composable
@@ -38,6 +41,7 @@ fun LoginScreen() {
         modifier = Modifier.fillMaxSize(),
         backgroundColor = Color.White
     ) { it
+        val context = LocalContext.current
         Column(
             modifier = Modifier
                 .padding(16.dp)
@@ -123,7 +127,9 @@ fun LoginScreen() {
             )
             Spacer(modifier = Modifier.height(20.dp))
             Button(
-                onClick = {},
+                onClick = {  val intent = Intent(context, SimpaduActivity::class.java)
+                    context.startActivity(intent)
+                 },
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(shape = RoundedCornerShape(100.dp))
