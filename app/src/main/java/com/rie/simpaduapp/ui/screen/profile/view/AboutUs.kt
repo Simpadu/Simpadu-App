@@ -115,12 +115,15 @@ fun aboutR() {
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        Spacer(modifier = Modifier.height(16.dp))
         Image(
             painter = painterResource(R.drawable.logo),
             contentDescription = "Your Image",
-            modifier = Modifier.fillMaxWidth().height(120.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(100.dp)
         )
-
+        Spacer(modifier = Modifier.height(8.dp))
         Text(text = "Developer simpadu:",
             textAlign = TextAlign.Justify,  modifier = Modifier.padding(vertical = 8.dp))
     }

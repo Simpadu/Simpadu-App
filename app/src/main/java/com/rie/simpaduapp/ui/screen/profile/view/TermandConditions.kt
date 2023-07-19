@@ -3,7 +3,6 @@ package com.rie.simpaduapp.ui.screen.profile
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.material.R
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -12,6 +11,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rie.simpaduapp.R
+
 
 @Composable
 fun TermsandConditions(modifier: Modifier = Modifier, navigateBack: () -> Unit){
@@ -25,11 +26,11 @@ fun TermsandConditions(modifier: Modifier = Modifier, navigateBack: () -> Unit){
                 contentColor = Color.White,
                 elevation = 10.dp,
                 navigationIcon = {
-                    IconButton(onClick =  navigateBack) {
-//                        Icon(
-//                            painter = painterResource(R.drawable.baseline_navigate_before_24),
-//                            contentDescription = "Back"
-//                        )
+                    IconButton(onClick = { }) {
+                        Icon(
+                            painter = painterResource(R.drawable.baseline_navigate_before_24),
+                            contentDescription = "Back"
+                        )
                     }
                 }
 
@@ -42,12 +43,6 @@ fun TermsandConditions(modifier: Modifier = Modifier, navigateBack: () -> Unit){
                     .padding(16.dp)
             ) {
                 Spacer(modifier = Modifier.height(16.dp))
-                Text(text = "Syarat dan Ketentuan",modifier = Modifier.padding(vertical = 8.dp),
-                    style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.Bold,
-                        fontSize = 12.sp
-                    )
-                )
-                Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     text=" Dengan menggunakan aplikasi kami, Anda setuju untuk:\n" +
                             "\n" +

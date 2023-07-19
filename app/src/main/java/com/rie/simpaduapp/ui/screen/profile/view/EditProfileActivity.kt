@@ -12,7 +12,7 @@ class EditProfileActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SimpaduAppTheme {
-                AboutUs ()
+                EditProfile()
             }
         }
     }

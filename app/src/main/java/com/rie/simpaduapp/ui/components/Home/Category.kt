@@ -98,13 +98,12 @@ fun CardItem(icon: Int, text: String, onClick: () -> Unit) {
 
     Card(
         modifier = Modifier
-            .width(87.dp)
+            .width(86.dp)
             .height(80.dp)
             .padding(5.dp)
-            .background(color = Color(0XFF2196F3), shape = RoundedCornerShape(size = 8.dp))
             .border(
                 width = 1.dp,
-                color = Color(0XFF6FF9FF),
+                color = Color(0xFFB8B8D2),
                 shape = RoundedCornerShape(size = 5.dp)
             )
             .clickable { onClick.invoke() }
