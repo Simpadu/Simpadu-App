@@ -27,17 +27,16 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import com.rie.simpaduapp.R
 
 @Composable
-fun Via() {
-    ViaContent()
+fun Kehadiran() {
+    KehadiranContent()
 }
 
 @Composable
-fun ViaContent(
+fun KehadiranContent(
     modifier: Modifier = Modifier
 ) {
     Column(
         horizontalAlignment = CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
         modifier = modifier.fillMaxSize()
     ) {
         Card(
@@ -75,3 +74,4 @@ fun ViaContent(
         }
     }
 }
+

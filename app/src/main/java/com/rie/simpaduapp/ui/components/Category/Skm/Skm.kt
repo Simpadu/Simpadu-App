@@ -27,17 +27,16 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import com.rie.simpaduapp.R
 
 @Composable
-fun Skm() {
-    SkmContent()
+fun SkmC() {
+    SkmCContent()
 }
 
 @Composable
-fun SkmContent(
+fun SkmCContent(
     modifier: Modifier = Modifier
 ) {
     Column(
         horizontalAlignment = CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
         modifier = modifier.fillMaxSize()
     ) {
         Card(

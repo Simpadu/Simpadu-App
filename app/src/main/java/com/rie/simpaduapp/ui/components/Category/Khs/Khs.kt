@@ -27,12 +27,12 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import com.rie.simpaduapp.R
 
 @Composable
-fun Khs() {
-    KhsContent()
+fun KhsC() {
+    KhsCContent()
 }
 
 @Composable
-fun KhsContent(
+fun  KhsCContent(
     modifier: Modifier = Modifier
 ) {
     Column(

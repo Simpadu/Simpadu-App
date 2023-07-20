@@ -27,12 +27,12 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import com.rie.simpaduapp.R
 
 @Composable
-fun Faq() {
-    FaqContent()
+fun FaqC() {
+    FaqCContent()
 }
 
 @Composable
-fun FaqContent(
+fun FaqCContent(
     modifier: Modifier = Modifier
 ) {
     Column(

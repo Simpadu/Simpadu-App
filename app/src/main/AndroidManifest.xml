@@ -96,6 +96,11 @@
             android:exported="false"
             android:label="SimpaduActivity"
             android:theme="@style/Theme.SimpaduApp"/>
+        <activity
+            android:name=".ui.screen.home.jadwal.view.JadwalActivity"
+            android:exported="false"
+            android:label="SimpaduActivity"
+            android:theme="@style/Theme.SimpaduApp"/>
 
 
         <activity

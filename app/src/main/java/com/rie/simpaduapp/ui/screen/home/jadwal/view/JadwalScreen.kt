@@ -1,26 +1,21 @@
-package com.rie.simpaduapp.ui.screen.home.prestasi.view
+package com.rie.simpaduapp.ui.screen.home.jadwal.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.rie.simpaduapp.R
-import com.rie.simpaduapp.ui.components.Category.Krs.KRS
-import com.rie.simpaduapp.ui.components.Category.Prestasi.Prestasi
+import com.rie.simpaduapp.ui.components.Category.Jadwal.Jadwal
+import com.rie.simpaduapp.ui.components.Category.Magang.Magang
 
 @Composable
-fun AwardsScreen() {
-    AwardsScreenContent()
+fun JadwalScreen() {
+    JadwalScreenContent()
 }
 
 @Composable
-fun AwardsScreenContent(
+fun JadwalScreenContent(
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -30,6 +25,6 @@ fun AwardsScreenContent(
             .padding(horizontal = 16.dp),
     ) {
         Spacer(modifier = Modifier.height(20.dp))
-        Prestasi()
+        Jadwal()
     }
 }

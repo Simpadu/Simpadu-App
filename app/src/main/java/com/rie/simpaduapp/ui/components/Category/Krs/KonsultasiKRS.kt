@@ -37,7 +37,6 @@ fun KonsultasiKRSContent(
 ) {
     Column(
         horizontalAlignment = CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
         modifier = modifier.fillMaxSize()
     ) {
         Card(

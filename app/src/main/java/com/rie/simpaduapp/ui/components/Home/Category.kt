@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rie.simpaduapp.R
+import com.rie.simpaduapp.ui.screen.home.jadwal.view.JadwalActivity
 import com.rie.simpaduapp.ui.screen.home.khs.view.KhsActivity
 import com.rie.simpaduapp.ui.screen.home.krs.view.KrsActivity
 import com.rie.simpaduapp.ui.screen.home.magang.view.InternActivity
@@ -66,7 +67,7 @@ fun Category(onItemClick: (String) -> Unit) {
         Row(modifier = Modifier.fillMaxWidth()) {
             CardItem(icon = R.drawable.ic_description, text = "JADWAL",
                 onClick = {
-                    val intent = Intent(context, PrivasiPolicyActivity::class.java)
+                    val intent = Intent(context, JadwalActivity::class.java)
                     context.startActivity(intent)
                 }
                 )

@@ -1,17 +1,18 @@
 package com.rie.simpaduapp.ui.screen.notification.view
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.rie.simpaduapp.R
+import com.rie.simpaduapp.ui.components.Category.Magang.Magang
+import com.rie.simpaduapp.ui.components.Notifikasi.Notifikasi
 
 
 @Composable
@@ -24,16 +25,12 @@ fun NotificationContent(
     modifier: Modifier = Modifier
 ) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .background(Color(0xFFFFFFFF))
+            .padding(horizontal = 16.dp),
     ) {
-        Text(
-            text = stringResource(R.string.menu_home),
-            style = MaterialTheme.typography.h4
-        )
-
+        Spacer(modifier = Modifier.height(20.dp))
+        Notifikasi()
     }
 }

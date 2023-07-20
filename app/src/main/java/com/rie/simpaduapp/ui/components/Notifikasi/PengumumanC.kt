@@ -1,5 +1,6 @@
 package com.rie.simpaduapp.ui.components.Notifikasi
 
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
@@ -27,17 +28,16 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import com.rie.simpaduapp.R
 
 @Composable
-fun RiwayatN() {
-    RiwayatNContent()
+fun PengumumanC() {
+    PengumumanCContent()
 }
 
 @Composable
-fun RiwayatNContent(
+fun PengumumanCContent(
     modifier: Modifier = Modifier
 ) {
     Column(
         horizontalAlignment = CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
         modifier = modifier.fillMaxSize()
     ) {
         Card(
