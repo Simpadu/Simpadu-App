@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SimpaduApp</string>
+    <string name="app_name">Simpadu</string>
     <string name="btn_login">Login</string>
     <string name="login">Silahkan login dengan akun anda untuk melanjutkan</string>
     <string name="wlcome">Selamat datang</string>

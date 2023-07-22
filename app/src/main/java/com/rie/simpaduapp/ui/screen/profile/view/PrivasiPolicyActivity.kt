@@ -12,7 +12,7 @@ class PrivasiPolicyActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SimpaduAppTheme {
-                AboutUs ()
+                PrivasiPolicy()
             }
         }
     }

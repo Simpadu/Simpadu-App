@@ -12,7 +12,7 @@ class FaqActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SimpaduAppTheme {
-                AboutUs ()
+                FAQ()
             }
         }
     }

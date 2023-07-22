@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.SimpaduApp"
@@ -53,6 +55,55 @@
             android:exported="false"
             android:label="EditProfileActivity"
             android:theme="@style/Theme.SimpaduApp"/>
+
+        <activity
+            android:name=".SimpaduActivity"
+            android:exported="false"
+            android:label="SimpaduActivity"
+            android:theme="@style/Theme.SimpaduApp"/>
+
+        <activity
+            android:name=".ui.screen.home.khs.view.KhsActivity"
+            android:exported="false"
+            android:label="SimpaduActivity"
+            android:theme="@style/Theme.SimpaduApp"/>
+
+        <activity
+            android:name=".ui.screen.home.krs.view.KrsActivity"
+            android:exported="false"
+            android:label="SimpaduActivity"
+            android:theme="@style/Theme.SimpaduApp"/>
+        <activity
+            android:name=".ui.screen.home.skm.view.SkmActivity"
+            android:exported="false"
+            android:label="SimpaduActivity"
+            android:theme="@style/Theme.SimpaduApp"/>
+        <activity
+            android:name=".ui.screen.home.ukt.view.UktActivity"
+            android:exported="false"
+            android:label="SimpaduActivity"
+            android:theme="@style/Theme.SimpaduApp"/>
+        <activity
+            android:name=".ui.screen.home.prestasi.view.AwardsActivity"
+            android:exported="false"
+            android:label="SimpaduActivity"
+            android:theme="@style/Theme.SimpaduApp"/>
+        <activity
+            android:name=".ui.screen.home.magang.view.InternActivity"
+            android:exported="false"
+            android:label="SimpaduActivity"
+            android:theme="@style/Theme.SimpaduApp"/>
+        <activity
+            android:name=".ui.screen.home.wisuda.view.GraduationActivity"
+            android:exported="false"
+            android:label="SimpaduActivity"
+            android:theme="@style/Theme.SimpaduApp"/>
+        <activity
+            android:name=".ui.screen.home.jadwal.view.JadwalActivity"
+            android:exported="false"
+            android:label="SimpaduActivity"
+            android:theme="@style/Theme.SimpaduApp"/>
+
 
         <activity
             android:name=".MainActivity"
