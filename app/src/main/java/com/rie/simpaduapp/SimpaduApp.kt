@@ -1,65 +1,104 @@
 package com.rie.simpaduapp
 
+import android.content.Context
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.*
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
+import com.rie.simpaduapp.data.Preferences
 import com.rie.simpaduapp.ui.navigation.NavigationItem
 import com.rie.simpaduapp.ui.navigation.Screen
 import com.rie.simpaduapp.ui.screen.ProfileScreen
+import com.rie.simpaduapp.ui.screen.auth.LoginScreen
 import com.rie.simpaduapp.ui.screen.home.HomeScreen
 import com.rie.simpaduapp.ui.screen.notification.NotificationScreen
 import com.rie.simpaduapp.ui.screen.presensi.PresenceScreen
 import com.rie.simpaduapp.ui.theme.SimpaduAppTheme
 
 @Composable
-fun SimpaduApp(
-    modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController()
-){
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route
+fun SimpaduApp(){
+    val navHostController: NavHostController = rememberNavController()
+    val context = LocalContext.current
+    val sharedPreferences = context.getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
+    val isLogeedIn = remember { mutableStateOf(Preferences.isLoggedIn(sharedPreferences)) }
+    val pref = Preferences.initPref(context, "isLoggedIn")
+    val token = pref.getString("context", null).toString()
 
-    Scaffold(
-        bottomBar = {
-            BottomBar(navController = navController)
-        },
-        modifier = modifier
-    ) { innerPadding ->
-        NavHost(
-            navController = navController,
-            startDestination = Screen.Home.route,
-            modifier = Modifier.padding(innerPadding)
-        ) {
-            composable(Screen.Home.route) {
-                HomeScreen()
-            }
-            composable(Screen.Presence.route) {
-                PresenceScreen()
-            }
-            composable(Screen.Notification.route) {
-                NotificationScreen()
-            }
-            composable(Screen.Profile.route) {
-                ProfileScreen()
+    NavHost(
+        navController = navHostController,
+        startDestination =
+            if (isLogeedIn.value && token != "") {
+                "mainScreen"
+            } else {
+                "loginScreen"
             }
 
-    }}
+
+    ) {
+        auth(navHostController = navHostController)
+        main(navHostController = navHostController)
+    }
+
 }
+
+fun NavGraphBuilder.main(navHostController: NavHostController) {
+    navigation(
+        startDestination = Screen.Home.route,
+        route = "mainScreen"
+    ) {
+        composable(Screen.Home.route) {
+            HomeScreen()
+        }
+        composable(Screen.Presence.route) {
+            PresenceScreen()
+        }
+        composable(Screen.Notification.route) {
+            NotificationScreen()
+        }
+        composable(Screen.Profile.route) {
+            ProfileScreen()
+        }
+
+
+    }
+}
+
+
+fun NavGraphBuilder.auth(navHostController: NavHostController) {
+    navigation(
+        startDestination = Screen.Login.route,
+        route = "loginScreen"
+    ) {
+        composable(Screen.Login.route) {
+            LoginScreen(navHostController = navHostController)
+        }
+
+//        composable(Screen.ForgotPassword.route) {
+//            ForgotPasswordScreen(navHostController = navHostController)
+//        }
+
+    }
+}
+
+
+
+
 
 @Composable
 fun BottomBar(
