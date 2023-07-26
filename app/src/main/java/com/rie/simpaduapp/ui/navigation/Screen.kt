@@ -9,4 +9,7 @@ sealed class Screen(val route: String) {
     object Presence : Screen("presence")
     object Notification : Screen("notification")
     object Profile : Screen("profile")
+    object BottomBar : Screen("bottom_bar")
+    object AppScaffold : Screen("app_scaffold")
+
 }

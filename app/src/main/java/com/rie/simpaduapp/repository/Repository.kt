@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.rie.simpaduapp.base.AuthResponse
+import com.rie.simpaduapp.base.DefaultResponse
 import com.rie.simpaduapp.service.ApiService
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -25,6 +26,16 @@ class Repository(private val apiService: ApiService) {
             emit(Result.Error(e.message.toString()))
             }
         }
+
+    fun logout(): LiveData<Result<DefaultResponse>> = liveData {
+        try {
+            val respone = apiService.logout()
+            Log.d(TAG, respone.toString())
+            emit(Result.Success(respone))
+        } catch (e: Exception) {
+            Log.e(TAG, "logoutRepository: ${e.message.toString()}")
+        }
+    }
 
     companion object {
         private const val TAG = "Repository"

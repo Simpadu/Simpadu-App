@@ -1,6 +1,8 @@
 package com.rie.simpaduapp.ui.screen
 
+import android.content.Context
 import android.content.Intent
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -8,30 +10,45 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.*
-import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
 import com.rie.simpaduapp.R
+import com.rie.simpaduapp.data.Preferences
+import com.rie.simpaduapp.ui.components.navigation.BottomBar
 import com.rie.simpaduapp.ui.screen.profile.view.*
+import com.rie.simpaduapp.ui.screen.profile.viewmodel.ProfileViewModel
+import com.rie.simpaduapp.repository.Result
 
 
 @Composable
-fun ProfileScreen( modifier: Modifier = Modifier) {
+fun ProfileScreen( navController: NavHostController) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text(text = "Profile") },
                 backgroundColor = Color.White,
                 elevation = 2.dp,
+            )
+        },
+        bottomBar = {
+            BottomBar(
+                modifier = Modifier,
+                navController = navController
             )
         },
     ) {it
@@ -86,7 +103,7 @@ fun ProfileScreen( modifier: Modifier = Modifier) {
             }
 
             Spacer(modifier = Modifier.height(10.dp))
-            ProfileCard()
+            ProfileCard(navController)
 
         }
     }
@@ -94,8 +111,9 @@ fun ProfileScreen( modifier: Modifier = Modifier) {
 
 
 @Composable
-fun ProfileCard() {
+fun ProfileCard( navController: NavHostController) {
     val context = LocalContext.current
+    val showDialog = remember { mutableStateOf(false) }
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -270,40 +288,82 @@ fun ProfileCard() {
                 Spacer(modifier = Modifier.width(16.dp))
                 ClickableText(
                     text = AnnotatedString("Keluar"),
-
                     onClick = {
-                        val intent = Intent(context, AboutUsActivity::class.java)
-                        context.startActivity(intent)
+                        showDialog.value = true
                     }
                 )
             }
+
+            if (showDialog.value) {
+                AlertLogout(navController = navController, onDismiss = {
+                    showDialog.value = false
+                })
+            }
+
+
+
         }
     }
 }
 
-
 @Composable
-fun LogoutButton() {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 20.dp),
-        backgroundColor = Color.White,
-        shape = RoundedCornerShape(16.dp)
-    ) {
-        Row(
-            modifier = Modifier.padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_log_out),
-                contentDescription = "Icon",
-                modifier = Modifier.size(24.dp)
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-            Text(
-                text = "Keluar",
-            )
-        }
+fun AlertLogout(
+    navController: NavHostController,
+    onDismiss: () -> Unit,
+    viewModel: ProfileViewModel = viewModel(
+        factory = ViewModelFactory(LocalContext.current)
+    ),
+) {
+    Column() {
+        val lifecycleOwner = LocalLifecycleOwner.current
+        val context = LocalContext.current
+        AlertDialog(
+            onDismissRequest = {
+                onDismiss()
+            },
+            title = {
+                Text(text = "Keluar dari akun")
+            },
+            text = {
+                Text("Apakah anda yakin ingin keluar?")
+            },
+            confirmButton = {
+                OutlinedButton(
+                    onClick = {
+                        viewModel.logout().observe(lifecycleOwner, {
+                            when (it) {
+                                is Result.Loading -> {
+                                    // Handle loading state if needed
+                                }
+                                is Result.Success -> {
+                                    val sharedPreferences =
+                                        context.getSharedPreferences(
+                                            "my_preferences",
+                                            Context.MODE_PRIVATE
+                                        )
+                                    Preferences.logout(sharedPreferences)
+                                    navController.popBackStack()
+                                    navController.navigate("loginScreen") {
+                                        popUpTo(navController.graph.findStartDestination().id)
+                                    }
+                                }
+                                is Result.Error -> {
+                                    Toast.makeText(context, it.error, Toast.LENGTH_LONG).show()
+                                }
+                                else -> {}
+                            }
+                        })
+                    }) {
+                    Text("Konfirmasi Keluar")
+                }
+            },
+            dismissButton = {
+                Button(onClick = {
+                    onDismiss()
+                }) {
+                    Text(text = "Batal")
+                }
+            }
+        )
     }
 }

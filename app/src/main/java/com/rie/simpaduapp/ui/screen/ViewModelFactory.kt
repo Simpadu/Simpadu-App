@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rie.simpaduapp.data.Injection
 import com.rie.simpaduapp.ui.screen.auth.viewmodel.LoginViewModel
+import com.rie.simpaduapp.ui.screen.home.HomeViewModel
+import com.rie.simpaduapp.ui.screen.profile.viewmodel.ProfileViewModel
 
 class ViewModelFactory(private val context: Context) :
     ViewModelProvider.NewInstanceFactory() {
@@ -14,11 +16,12 @@ class ViewModelFactory(private val context: Context) :
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return LoginViewModel(Injection.provideRepository(context)) as T
         }
-//      else if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-//            return HomeViewModel(Injection.provideRepository(context)) as T
-//        } else if (modelClass.isAssignableFrom(ProfileViewModel::class.java)) {
-//            return ProfileViewModel(Injection.provideRepository(context)) as T
-//        }
+       else if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
+            return HomeViewModel(Injection.provideRepository(context)) as T
+        }
+        else if (modelClass.isAssignableFrom(ProfileViewModel::class.java)) {
+            return ProfileViewModel(Injection.provideRepository(context)) as T
+        }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
 }

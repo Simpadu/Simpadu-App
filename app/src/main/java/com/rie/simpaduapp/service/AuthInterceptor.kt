@@ -27,13 +27,13 @@ class AuthInterceptor(private var token: String, private var context: Context): 
         if (response.code == 403) {
             val sharedPreferences =
                 context.getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
-            val token = sharedPreferences.getString("access_token", null).toString()
+            val newToken = sharedPreferences.getString("token", null).toString()
 
-            request =
-                request.newBuilder()
-                    .removeHeader(AUTHORIZATION)
-                    .addHeader(AUTHORIZATION, token)
-                    .build()
+            request = request.newBuilder()
+                .removeHeader(AUTHORIZATION)
+                .addHeader(AUTHORIZATION, newToken)
+                .build()
+
             return chain.proceed(request)
         }
         return response
