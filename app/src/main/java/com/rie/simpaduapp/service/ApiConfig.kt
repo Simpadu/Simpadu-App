@@ -31,7 +31,7 @@ class ApiConfig {
             Log.d("ApiConfig", token)
 
             val retrofit = Retrofit.Builder()
-                .baseUrl("http://13.212.11.54:4000")
+                .baseUrl("http://simpaduapi.my.id")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(getInterceptor(token, context))
                 .build()

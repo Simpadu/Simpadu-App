@@ -45,17 +45,17 @@ fun LoginInput(
     val showPassword = remember { mutableStateOf(false) }
 
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .offset(y = (-50).dp)
-            .background(Color.White)
-            .clip(shape = RoundedCornerShape(topStart = 40.dp, topEnd = 40.dp)),
+//        modifier = modifier
+//            .fillMaxSize()
+//            .offset(y = (-50).dp)
+//            .background(Color.White)
+//            .clip(shape = RoundedCornerShape(topStart = 40.dp, topEnd = 40.dp)),
     ) {
         OutlinedTextField(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(top = 50.dp)
-                .padding(horizontal = 16.dp),
+//                .padding(top = 50.dp)
+                .padding(horizontal = 8.dp),
             value = nim,
             label = { Text(text = "Username") },
             leadingIcon = { Icon(imageVector = Icons.Default.Person, contentDescription = "nim") },
@@ -72,10 +72,12 @@ fun LoginInput(
             ),
             singleLine = true,
         )
+        Spacer(modifier = Modifier.height(8.dp))
         OutlinedTextField(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 16.dp),
+//                .padding(top = 50.dp)
+                .padding(horizontal = 8.dp),
             value = password,
             label = { Text(text = "Password") },
             leadingIcon = { Icon(painter = painterResource(id =R.drawable.baseline_key_24), contentDescription = "y") },

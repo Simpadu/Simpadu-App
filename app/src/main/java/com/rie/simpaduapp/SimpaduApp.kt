@@ -88,11 +88,6 @@ fun NavGraphBuilder.auth(navHostController: NavHostController) {
         composable(Screen.Login.route) {
             LoginScreen(navHostController = navHostController)
         }
-
-//        composable(Screen.ForgotPassword.route) {
-//            ForgotPasswordScreen(navHostController = navHostController)
-//        }
-
     }
 }
 

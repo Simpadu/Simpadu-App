@@ -91,8 +91,7 @@ fun LoginScreen(
                 onPasswordChange = viewModel::onPasswordChange,
                 navHostController = navHostController
             )
-
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(30.dp))
             BtnLogin(
                 navHostController = navHostController,
                 onClick = {
