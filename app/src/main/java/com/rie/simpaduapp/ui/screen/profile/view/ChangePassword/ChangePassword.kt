@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.rie.simpaduapp.R
 
 @Composable
-fun ChangePassword(modifier: Modifier = Modifier) {
+fun ChangePassword(modifier: Modifier = Modifier, navigateBack: () -> Unit) {
     val income1 = remember { mutableStateOf("") }
     val income2 = remember { mutableStateOf("") }
 
@@ -28,11 +28,10 @@ fun ChangePassword(modifier: Modifier = Modifier) {
         topBar = {
             TopAppBar(
                 title = { Text(text = "Ganti Password") },
-//                backgroundColor = Color.Green,
                 contentColor = Color.White,
                 elevation = 10.dp,
                 navigationIcon = {
-                    IconButton(onClick = { /* Handle navigation icon click */ }) {
+                    IconButton(onClick =  navigateBack) {
                         Icon(
                             painter = painterResource(R.drawable.baseline_navigate_before_24),
                             contentDescription = "Back"

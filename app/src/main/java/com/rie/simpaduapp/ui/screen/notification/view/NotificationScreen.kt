@@ -26,8 +26,6 @@ fun NotificationScreen(navController: NavHostController) {
         topBar = {
             TopAppBar(
                 title = { Text("Notifikasi") },
-                contentColor = Color.Black,
-                elevation = 10.dp
             )
         },
         bottomBar = {

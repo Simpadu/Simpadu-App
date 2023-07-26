@@ -1,10 +1,10 @@
 package com.rie.simpaduapp.ui.components.navigation
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.height
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Home
@@ -13,9 +13,13 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.compose.ui.graphics.Shape
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import com.rie.simpaduapp.ui.navigation.NavigationItem
 import com.rie.simpaduapp.ui.navigation.Screen
 
@@ -50,29 +54,44 @@ fun BottomBar(
         )
     )
 
-    BottomNavigation(
-        modifier = modifier.fillMaxWidth()
+    Surface(
+        shape = RoundedCornerShape(topStart = 25.dp, topEnd = 25.dp),
+        elevation = 20.dp,
     ) {
-        navigationItems.forEach { item ->
-            BottomNavigationItem(
-                icon = {
-                    Icon(
-                        imageVector = item.icon,
-                        contentDescription = item.title
-                    )
-                },
-                label = { Text(text = item.title) },
-                selected = currentRoute == item.screen.route,
-                onClick = {
-                    navController.navigate(item.screen.route) {
-                        popUpTo(navController.graph.findStartDestination().id) {
-                            saveState = true
+        BottomNavigation(
+            modifier = modifier
+                .fillMaxWidth()
+                .height(75.dp)
+        ) {
+            navigationItems.forEach { item ->
+                BottomNavigationItem(
+                    icon = {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Icon(
+                                imageVector = item.icon,
+                                contentDescription = item.title,
+                            )
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(
+                                text = item.title,
+                                style = MaterialTheme.typography.caption,
+                            )
                         }
-                        restoreState = true
-                        launchSingleTop = true
+                    },
+                    selected = currentRoute == item.screen.route,
+                    onClick = {
+                        navController.navigate(item.screen.route) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            restoreState = true
+                            launchSingleTop = true
+                        }
                     }
-                }
-            )
+                )
+            }
         }
     }
 }
+
+

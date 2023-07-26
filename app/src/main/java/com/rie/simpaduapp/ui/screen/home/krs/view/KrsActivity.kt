@@ -12,7 +12,7 @@ class KrsActivity  : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SimpaduAppTheme {
-                KrsScreen ()
+                KrsScreen (navigateBack = { onBackPressed() })
             }
         }
     }

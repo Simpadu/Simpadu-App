@@ -12,7 +12,7 @@ class InternActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SimpaduAppTheme {
-                InternScreen ()
+                InternScreen (navigateBack = { onBackPressed() })
             }
         }
     }

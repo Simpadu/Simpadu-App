@@ -23,17 +23,16 @@ import com.rie.simpaduapp.R
 import com.rie.simpaduapp.ui.screen.profile.Ukuran
 
 @Composable
-fun ContactUs( modifier: Modifier = Modifier){
+fun ContactUs( modifier: Modifier = Modifier, navigateBack: () -> Unit){
     Scaffold(
         modifier = modifier,
         topBar = {
             TopAppBar(
                 title = { Text(text = "Hubungi Kami") },
-//                backgroundColor = GreenPressed,
                 contentColor = Color.White,
                 elevation = 10.dp,
                 navigationIcon = {
-                    IconButton(onClick = { }) {
+                    IconButton(onClick =  navigateBack) {
                         Icon(
                             painter = painterResource(R.drawable.baseline_navigate_before_24),
                             contentDescription = "Back"

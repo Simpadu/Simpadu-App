@@ -12,7 +12,7 @@ class KhsActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SimpaduAppTheme {
-                KhsScreen ()
+                KhsScreen (navigateBack = { onBackPressed() })
             }
         }
     }

@@ -30,19 +30,25 @@ import androidx.navigation.NavHostController
 import com.rie.simpaduapp.R
 import com.rie.simpaduapp.data.Preferences
 import com.rie.simpaduapp.ui.components.navigation.BottomBar
-import com.rie.simpaduapp.ui.screen.profile.view.*
 import com.rie.simpaduapp.ui.screen.profile.viewmodel.ProfileViewModel
 import com.rie.simpaduapp.repository.Result
+import com.rie.simpaduapp.ui.screen.profile.view.AboutUs.AboutUsActivity
+import com.rie.simpaduapp.ui.screen.profile.view.ChangePassword.ChangePasswordActivity
+import com.rie.simpaduapp.ui.screen.profile.view.ContactUs.ContactUsActivity
+import com.rie.simpaduapp.ui.screen.profile.view.EditProfile.EditProfileActivity
+import com.rie.simpaduapp.ui.screen.profile.view.PrivasiPolicy.PrivasiPolicyActivity
+import com.rie.simpaduapp.ui.screen.profile.view.TermCondition.TermandConditionsActivity
+import com.rie.simpaduapp.ui.screen.profile.view.faq.FaqActivity
 
 
 @Composable
 fun ProfileScreen( navController: NavHostController) {
+    val appBarColor = MaterialTheme.colors.primary
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "Profile") },
-                backgroundColor = Color.White,
-                elevation = 2.dp,
+                title = { Text("Profile") },
+                backgroundColor = appBarColor
             )
         },
         bottomBar = {

@@ -1,18 +1,18 @@
-package com.rie.simpaduapp.ui.screen.profile.view
+package com.rie.simpaduapp.ui.screen.profile.view.ContactUs
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.rie.simpaduapp.ui.screen.profile.AboutUs
+import com.rie.simpaduapp.ui.screen.profile.view.ContactUs
 import com.rie.simpaduapp.ui.theme.SimpaduAppTheme
 
-class FaqActivity : ComponentActivity() {
+class ContactUsActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             SimpaduAppTheme {
-                FAQ()
+               ContactUs(navigateBack = { onBackPressed() })
             }
         }
     }

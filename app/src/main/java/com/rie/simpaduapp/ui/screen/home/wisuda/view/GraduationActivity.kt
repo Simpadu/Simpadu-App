@@ -12,7 +12,7 @@ class GraduationActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SimpaduAppTheme {
-                GraduationScreen ()
+                GraduationScreen (navigateBack = { onBackPressed() })
             }
         }
     }

@@ -1,10 +1,9 @@
-package com.rie.simpaduapp.ui.screen.profile.view
+package com.rie.simpaduapp.ui.screen.profile.view.ChangePassword
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.Scaffold
-import com.rie.simpaduapp.ui.screen.profile.AboutUs
+import com.rie.simpaduapp.ui.screen.profile.view.ChangePassword
 import com.rie.simpaduapp.ui.theme.SimpaduAppTheme
 
 class ChangePasswordActivity : ComponentActivity() {
@@ -13,7 +12,7 @@ class ChangePasswordActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SimpaduAppTheme {
-                ChangePassword()
+                ChangePassword(navigateBack = { onBackPressed() })
             }
         }
     }

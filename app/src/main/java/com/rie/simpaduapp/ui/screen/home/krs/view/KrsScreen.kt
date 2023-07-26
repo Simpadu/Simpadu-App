@@ -18,7 +18,7 @@ import com.rie.simpaduapp.R
 
 
 @Composable
-fun KrsScreen(modifier: Modifier = Modifier) {
+fun KrsScreen(modifier: Modifier = Modifier, navigateBack: () -> Unit) {
     val tabs = remember { mutableStateListOf("KRS", "Konsultasi") }
     val selectedTabIndex = remember { mutableStateOf(0) }
     Scaffold(
@@ -29,7 +29,7 @@ fun KrsScreen(modifier: Modifier = Modifier) {
                 contentColor = Color.White,
                 elevation = 10.dp,
                 navigationIcon = {
-                    IconButton(onClick = { }) {
+                    IconButton(onClick =  navigateBack) {
                         Icon(
                             painter = painterResource(R.drawable.baseline_navigate_before_24),
                             contentDescription = "Back"

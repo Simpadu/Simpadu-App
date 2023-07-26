@@ -12,7 +12,7 @@ class UktActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SimpaduAppTheme {
-                UktScreen ()
+                UktScreen (navigateBack = { onBackPressed() })
             }
         }
     }

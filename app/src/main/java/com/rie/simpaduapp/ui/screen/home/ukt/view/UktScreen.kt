@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.rie.simpaduapp.R
 
 @Composable
-fun UktScreen(modifier: Modifier = Modifier) {
+fun UktScreen(modifier: Modifier = Modifier, navigateBack: () -> Unit) {
     val tabs = remember { mutableStateListOf("Pembayaran", "Riwayat") }
     val selectedTabIndex = remember { mutableStateOf(0) }
 
@@ -25,11 +25,10 @@ fun UktScreen(modifier: Modifier = Modifier) {
         topBar = {
             TopAppBar(
                 title = { Text(text = "UKT") },
-//                backgroundColor = GreenPressed,
                 contentColor = Color.White,
                 elevation = 10.dp,
                 navigationIcon = {
-                    IconButton(onClick = { }) {
+                    IconButton(onClick =  navigateBack) {
                         Icon(
                             painter = painterResource(R.drawable.baseline_navigate_before_24),
                             contentDescription = "Back"
@@ -69,8 +68,3 @@ fun UktScreen(modifier: Modifier = Modifier) {
 }
 
 
-@Preview
-@Composable
-fun UktScreenPreview() {
-    UktScreen()
-}

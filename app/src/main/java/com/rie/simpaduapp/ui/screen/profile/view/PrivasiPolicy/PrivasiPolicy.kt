@@ -17,18 +17,17 @@ import com.rie.simpaduapp.R
 
 @Composable
 
-fun PrivasiPolicy( modifier: Modifier = Modifier){
+fun PrivasiPolicy( modifier: Modifier = Modifier, navigateBack: () -> Unit){
     Scaffold(
 
         modifier = modifier,
         topBar = {
             TopAppBar(
                 title = { Text(text = "Kebijakan Privasi") },
-//                backgroundColor = GreenPressed,
                 contentColor = Color.White,
                 elevation = 10.dp,
                 navigationIcon = {
-                    IconButton(onClick = {  }) {
+                    IconButton(onClick =  navigateBack) {
                         Icon(
                             painter = painterResource(R.drawable.baseline_navigate_before_24),
                             contentDescription = "Back"

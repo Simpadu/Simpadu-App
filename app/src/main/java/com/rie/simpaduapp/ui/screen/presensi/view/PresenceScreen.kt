@@ -28,8 +28,6 @@ fun PresenceScreen(navController: NavHostController) {
         topBar = {
             TopAppBar(
                 title = { Text("Presensi") },
-                contentColor = Color.Black,
-                elevation = 10.dp
             )
         },
         bottomBar = {
