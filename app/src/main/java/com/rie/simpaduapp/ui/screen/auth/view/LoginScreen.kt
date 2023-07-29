@@ -25,7 +25,7 @@ import com.rie.simpaduapp.ui.components.LoginInput
 import com.rie.simpaduapp.ui.screen.ViewModelFactory
 import com.rie.simpaduapp.ui.screen.auth.viewmodel.LoginViewModel
 import com.rie.simpaduapp.ui.components.BtnLogin
-import com.rie.simpaduapp.repository.Result
+import com.rie.simpaduapp.base.Result
 
 
 

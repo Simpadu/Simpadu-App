@@ -18,6 +18,7 @@ import okio.IOException
 import org.json.JSONObject
 import java.io.InputStream
 import java.time.LocalDate
+import com.rie.simpaduapp.base.Result
 
 class Repository(private val apiService: ApiService) {
 
@@ -251,8 +252,7 @@ class Repository(private val apiService: ApiService) {
         try {
             val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), uri.readBytes())
             val imageMultiPart =
-                MultipartBody.Part.createFormData("file", requestFile.toString())
-
+                MultipartBody.Part.createFormData("file", "mahasiswa",requestFile)
             val response = apiService.changePhoto(imageMultiPart)
             Result.Success(response)
         } catch (e: Throwable) {
@@ -263,7 +263,6 @@ class Repository(private val apiService: ApiService) {
                 uri.close()
                 }
             }
-
 
     companion object {
         private const val TAG = "Repository"

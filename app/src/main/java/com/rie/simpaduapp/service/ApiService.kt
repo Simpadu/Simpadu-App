@@ -33,7 +33,7 @@ interface ApiService {
     suspend fun getMagang(): List<MagangResponse>
 
     @Multipart
-    @POST("/api/upload")
+    @POST("/api/upload/{id}")
     suspend fun changePhoto(
         @Part file: MultipartBody.Part,
     ): DefaultResponse

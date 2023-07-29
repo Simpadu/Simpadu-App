@@ -31,7 +31,7 @@ import com.rie.simpaduapp.R
 import com.rie.simpaduapp.data.Preferences
 import com.rie.simpaduapp.ui.components.navigation.BottomBar
 import com.rie.simpaduapp.ui.screen.profile.viewmodel.ProfileViewModel
-import com.rie.simpaduapp.repository.Result
+import com.rie.simpaduapp.base.Result
 import com.rie.simpaduapp.ui.screen.profile.view.AboutUs.AboutUsActivity
 import com.rie.simpaduapp.ui.screen.profile.view.ChangePassword.ChangePasswordActivity
 import com.rie.simpaduapp.ui.screen.profile.view.ContactUs.ContactUsActivity
