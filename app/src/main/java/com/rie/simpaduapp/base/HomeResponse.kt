@@ -3,15 +3,16 @@ package com.rie.simpaduapp.base
 import com.google.gson.annotations.SerializedName
 
 data class HomeResponse(
-    @SerializedName("minggu")
-    val minggu: Int,
+    @field:SerializedName("minggu")
+    val minggu: String,
 
-    @SerializedName("status_mahasiswa")
-    val statusMahasiswa: String,
+    @field:SerializedName("status_mahasiswa")
+    val status_mahasiswa: String,
 
-    @SerializedName("total_sks")
-    val totalSks: Int,
+    @field:SerializedName("total_sks")
+    val total_sks:String,
 
-    @SerializedName("ipk")
-    val ipk:Double,
-)
+    @field:SerializedName("ipk")
+    val ipk:String,
+
+    )

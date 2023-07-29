@@ -30,7 +30,7 @@ fun KhsContent(
             .padding(16.dp)
     ) {
         Text(
-            text = stringResource(R.string.menu_presensi),
+            text ="KHS",
             style = MaterialTheme.typography.h4
         )
 

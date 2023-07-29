@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -21,33 +22,44 @@ import com.rie.simpaduapp.ui.screen.auth.LoginScreen
 import com.rie.simpaduapp.ui.screen.home.HomeScreen
 import com.rie.simpaduapp.ui.screen.notification.NotificationScreen
 import com.rie.simpaduapp.ui.screen.presensi.PresenceScreen
+import com.rie.simpaduapp.ui.screen.splashscreen.SplashScreen
 import com.rie.simpaduapp.ui.theme.SimpaduAppTheme
+import kotlinx.coroutines.delay
 
 @Composable
-fun SimpaduApp(){
+fun SimpaduApp() {
     val navHostController: NavHostController = rememberNavController()
     val context = LocalContext.current
     val sharedPreferences = context.getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
-    val isLogeedIn = remember { mutableStateOf(Preferences.isLoggedIn(sharedPreferences)) }
+    val isLoggedIn = remember { mutableStateOf(Preferences.isLoggedIn(sharedPreferences)) }
     val pref = Preferences.initPref(context, "isLoggedIn")
     val token = pref.getString("context", null).toString()
 
-    NavHost(
-        navController = navHostController,
-        startDestination =
-            if (isLogeedIn.value && token != "") {
+
+    val isSplashFinished = remember { mutableStateOf(false) }
+
+    if (!isSplashFinished.value) {
+        SplashScreen()
+        LaunchedEffect(Unit) {
+            delay(5000)
+            isSplashFinished.value = true
+        }
+    } else {
+        NavHost(
+            navController = navHostController,
+            startDestination =
+            if (isLoggedIn.value && token != "") {
                 "mainScreen"
             } else {
                 "loginScreen"
             }
-
-
-    ) {
-        auth(navHostController = navHostController)
-        main(navHostController = navHostController)
+        ) {
+            auth(navHostController = navHostController)
+            main(navHostController = navHostController)
+        }
     }
-
 }
+
 
 fun NavGraphBuilder.main(navHostController: NavHostController) {
     navigation(

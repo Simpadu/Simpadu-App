@@ -54,22 +54,17 @@ fun MingguContent(
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Hai",
+                        text = "Pertemuan",
                         color = Color.Gray,
                         fontSize = 15.sp
                     )
                     Text(
-                        text = "John Doe",
+                        text = "16/16",
                         color = Color.Gray,
                         fontSize = 17.sp,
                         fontWeight = Bold
                     )
-                    Text(
-                        text = "john.doe@example.com",
-                        color = Color.DarkGray,
-                        fontSize = 13.sp,
-                        modifier = Modifier.padding(top = 7.dp)
-                    )
+
                 }
             }
         }

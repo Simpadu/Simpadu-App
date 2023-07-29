@@ -16,6 +16,7 @@ import com.rie.simpaduapp.R
 
 @Composable
 fun SplashScreen() {
+
     Scaffold { it
         Column(
             modifier = Modifier.fillMaxSize(),

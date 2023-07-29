@@ -44,7 +44,7 @@ interface ApiService {
     ): DefaultResponse
 
     @GET("/api/getMahasiswa")
-    suspend fun getMahasiswa(): MahasiswaResponse
+    suspend fun getProfile(): MahasiswaResponse
 
     @POST("/api/createWisuda")
     suspend fun createWisuda(
@@ -54,10 +54,6 @@ interface ApiService {
     @GET("/api/getWisuda")
     suspend fun getWisuda(): WisudaResponse
 
-    @POST("/api/createPrestasi")
-    suspend fun createPrestasi(
-        @Body PrestasiInput: RequestBody
-    ): DefaultResponse
 
     @PUT("/api/updatePrestasi/{id}")
     suspend fun updatePrestasi(
@@ -74,6 +70,9 @@ interface ApiService {
     suspend fun createResetEmail(
         @Body ResetEmailInput: RequestBody
     ):DefaultResponse
+
+    @GET("/api/riwayatresetemail")
+    suspend fun getResetEmail(): List<ResetEmailReaspon>
 
     @POST("/api/konsultasi/{semester}")
     suspend fun createKonsultasi(
@@ -103,15 +102,51 @@ interface ApiService {
         @Path("semester") krssemester: Int
     ): List<KrsResponse>
 
-    @POST("/api/presensicreate/{id}")
-    suspend fun createPresensi(
-        @Body presensiInput: RequestBody
-    ): DefaultResponse
-    @GET("/api/presensi")
+    @GET("/api/pengumuman")
+    suspend fun getPengumuman(): List<PengumumanResponse>
+
+    @GET("/api/presensidibuka")
     suspend fun getPresensi(): List<PresensiResponse>
+
+
+    @GET("/api/presensi")
+    suspend fun getRiwayatPresensi(): List<PresensiResponse>
+
+
+    @POST("/api/presensicreate/{id}")
+    suspend fun createPresensiById(
+        @Path("id") id: Int,
+        requestBody: RequestBody
+    ):DefaultResponse
 
     @GET("/api/home")
     suspend fun getHome(): HomeResponse
+
+    @GET("/api/pengumumanByID/{id}")
+    suspend fun getPengumumanById(
+        @Path("id") id: Int
+    ): List<PengumumanResponse>
+
+    @GET("/api/getAllPrestasi")
+    suspend fun getAllPrestasi(): List<PrestasiResponse>
+
+    @POST("/api/createPrestasi")
+    suspend fun createPrestasi(
+        @Body prestasiInput: RequestBody
+    ): DefaultResponse
+
+    @PUT("/api/updatePrestasi/{id}")
+    suspend fun updatePrestasi(
+        @Path("id") id: Int,
+        @Body updatePrestasi: RequestBody
+    ): DefaultResponse
+
+    @DELETE("/api/deletePrestasi/{id}")
+    suspend fun deletePrestasi(
+        @Path("id") id: Int
+    ):DefaultResponse
+
+
 
 }
 

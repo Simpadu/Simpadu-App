@@ -87,7 +87,7 @@ fun HomeContent(navController: NavHostController) {
                 title = "status",
                 content = { Ipk() }
             )
-            Spacer(modifier = Modifier.height(50.dp))
+            Spacer(modifier = Modifier.height(80.dp))
         }
     }
 }

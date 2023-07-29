@@ -88,18 +88,13 @@ fun ProfileScreen( navController: NavHostController) {
                     Spacer(modifier = Modifier.width(16.dp))
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "Hai",
-                            color = Color.Gray,
-                            fontSize = 15.sp
-                        )
-                        Text(
-                            text = "John Doe",
+                            text = "Noor Saputri",
                             color = Color.Gray,
                             fontSize = 17.sp,
                             fontWeight = FontWeight.Bold
                         )
                         Text(
-                            text = "john.doe@example.com",
+                            text = "C030320077@mahasiswa.ac.id",
                             color = Color.DarkGray,
                             fontSize = 13.sp,
                             modifier = Modifier.padding(top = 7.dp)

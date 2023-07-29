@@ -53,18 +53,18 @@ fun RiwayatPembayaranContent(
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Hai",
+                        text = "2022",
                         color = Color.Gray,
                         fontSize = 15.sp
                     )
                     Text(
-                        text = "John Doe",
+                        text = "Lunas",
                         color = Color.Gray,
                         fontSize = 17.sp,
                         fontWeight = Bold
                     )
                     Text(
-                        text = "john.doe@example.com",
+                        text = "28-09-2022",
                         color = Color.DarkGray,
                         fontSize = 13.sp,
                         modifier = Modifier.padding(top = 7.dp)
@@ -72,6 +72,73 @@ fun RiwayatPembayaranContent(
                 }
             }
         }
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 5.dp),
+            backgroundColor = Color.White,
+            shape = RoundedCornerShape(8.dp) ,
+            elevation = 8.dp
+        ) {
+            Row(
+                modifier = Modifier.padding(16.dp),
+                verticalAlignment = CenterVertically
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = "2022",
+                        color = Color.Gray,
+                        fontSize = 15.sp
+                    )
+                    Text(
+                        text = "Lunas",
+                        color = Color.Gray,
+                        fontSize = 17.sp,
+                        fontWeight = Bold
+                    )
+                    Text(
+                        text = "28-09-2022",
+                        color = Color.DarkGray,
+                        fontSize = 13.sp,
+                        modifier = Modifier.padding(top = 7.dp)
+                    )
+                }
+            }
+        }
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 5.dp),
+            backgroundColor = Color.White,
+            shape = RoundedCornerShape(8.dp) ,
+            elevation = 8.dp
+        ) {
+            Row(
+                modifier = Modifier.padding(16.dp),
+                verticalAlignment = CenterVertically
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = "2022",
+                        color = Color.Gray,
+                        fontSize = 15.sp
+                    )
+                    Text(
+                        text = "Lunas",
+                        color = Color.Gray,
+                        fontSize = 17.sp,
+                        fontWeight = Bold
+                    )
+                    Text(
+                        text = "28-09-2022",
+                        color = Color.DarkGray,
+                        fontSize = 13.sp,
+                        modifier = Modifier.padding(top = 7.dp)
+                    )
+                }
+            }
+        }
+
     }
 }
 
