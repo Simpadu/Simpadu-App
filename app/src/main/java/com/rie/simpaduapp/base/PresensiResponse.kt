@@ -7,9 +7,12 @@ data class PresensiResponse(
     val id: Int,
 
     @field:SerializedName("nama_matkul")
-    val namaMatkul: String,
+    val nama_matkul: String,
 
     @field:SerializedName("status")
     val status:String,
+
+    @field:SerializedName("masih_dibuka")
+    val masih_dibuka:String,
 
     )

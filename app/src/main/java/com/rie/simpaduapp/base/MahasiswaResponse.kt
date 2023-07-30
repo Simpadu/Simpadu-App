@@ -11,6 +11,9 @@ data class MahasiswaResponse(
     @field:SerializedName("nama")
     val nama: String? = null,
 
+    @field:SerializedName("foto_profil")
+    val foto_profil: String? = null,
+
     @field:SerializedName("nik")
     val nik: Char? = null,
 

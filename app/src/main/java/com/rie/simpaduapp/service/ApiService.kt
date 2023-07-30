@@ -23,19 +23,14 @@ interface ApiService {
     ): DefaultResponse
 
     @GET("/api/getMahasiswa")
-    suspend fun userProfile(): MahasiswaResponse
+    suspend fun  getProfile(): MahasiswaResponse
 
-    @POST("/api/createMagang")
-    suspend fun createMagang(
-        @Body incomeInput: RequestBody
-    ): DefaultResponse
-    @GET("/api/getMagang")
-    suspend fun getMagang(): List<MagangResponse>
+
 
     @Multipart
-    @POST("/api/upload/{id}")
+    @POST("/api/upload")
     suspend fun changePhoto(
-        @Part file: MultipartBody.Part,
+        @Part image: MultipartBody.Part,
     ): DefaultResponse
 
     @PUT("/api/updateMahasiswa")
@@ -43,8 +38,6 @@ interface ApiService {
         @Body updateProfile: RequestBody
     ): DefaultResponse
 
-    @GET("/api/getMahasiswa")
-    suspend fun getProfile(): MahasiswaResponse
 
     @POST("/api/createWisuda")
     suspend fun createWisuda(
@@ -86,10 +79,6 @@ interface ApiService {
     suspend fun getJadwalKuliah(): List<JadwalResponse>
 
 
-    @GET("/api/pengumuman/{jurusan_id}")
-    suspend fun getPengumuman(
-        @Path("jurusan_id") jurusanId: Int,
-    ): List<PengumumanResponse>
 
     @GET("/api/ukt")
     suspend fun ukt(): UktResponse
@@ -102,30 +91,15 @@ interface ApiService {
         @Path("semester") krssemester: Int
     ): List<KrsResponse>
 
-    @GET("/api/pengumuman")
-    suspend fun getPengumuman(): List<PengumumanResponse>
-
-    @GET("/api/presensidibuka")
-    suspend fun getPresensi(): List<PresensiResponse>
 
 
-    @GET("/api/presensi")
-    suspend fun getRiwayatPresensi(): List<PresensiResponse>
 
 
-    @POST("/api/presensicreate/{id}")
-    suspend fun createPresensiById(
-        @Path("id") id: Int,
-        requestBody: RequestBody
-    ):DefaultResponse
+
 
     @GET("/api/home")
     suspend fun getHome(): HomeResponse
 
-    @GET("/api/pengumumanByID/{id}")
-    suspend fun getPengumumanById(
-        @Path("id") id: Int
-    ): List<PengumumanResponse>
 
     @GET("/api/getAllPrestasi")
     suspend fun getAllPrestasi(): List<PrestasiResponse>
@@ -144,6 +118,28 @@ interface ApiService {
     @DELETE("/api/deletePrestasi/{id}")
     suspend fun deletePrestasi(
         @Path("id") id: Int
+    ):DefaultResponse
+
+    @GET("/api/pengumuman")
+    suspend fun getPengumuman(): List<PengumumanResponse>
+
+    @GET("/api/pengumuman/{id}")
+    suspend fun getPengumumanById(
+        @Path("id") id: Int,
+    ): List<PengumumanResponse>
+
+    @GET("/api/presensidibuka")
+    suspend fun getPresensi(): List<PresensiResponse>
+
+
+    @GET("/api/presensi")
+    suspend fun getRiwayatPresensi(): List<PresensiResponse>
+
+
+    @POST("/api/presensicreate/{id}")
+    suspend fun createPresensiById(
+        @Path("id") id: Int,
+        @Body requestBody: RequestBody
     ):DefaultResponse
 
 

@@ -49,16 +49,6 @@ class Repository(private val apiService: ApiService) {
     }
 
 
-    fun getUserProfile(): Flow<MahasiswaResponse> = flow {
-        try {
-            val response = apiService.userProfile()
-            emit(response)
-        } catch (e: Exception) {
-            Log.e(TAG, "getUserProfile: ${e.message.toString()}")
-        }
-    }.onStart { emitAll(flowOf(MahasiswaResponse())) }
-        .catch { e -> Log.e(TAG, "getUserProfile: ${e.message.toString()}")}
-
     fun createPrestasi(
         nama_prestasi: String, tingkatan_lomba: TingkatanLombaEnum, jenis_peserta: JenisPesertaEnum,
         jumlah_peserta: Int, capaian_prestasi: CapaianPrestasiEnum, tanggal_lomba: LocalDate,
@@ -126,47 +116,27 @@ class Repository(private val apiService: ApiService) {
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
             }
-        }
+    }
 
     fun getResetEmail(): Flow<List<ResetEmailReaspon>> = flow {
         val response = apiService.getResetEmail()
         emit(response)
-        }
+    }
 
     fun getProfile(): Flow<MahasiswaResponse> = flow {
         try {
             val responseData = mutableStateOf("")
-            val response = apiService.getProfile()
+            val response = apiService. getProfile()
             responseData.value = response.nama.toString()
-            responseData.value = response.email.toString()
+//            responseData.value = response.foto_profil.toString()
+//            responseData.value = response.email.toString()
             emit(response)
         } catch (e: Exception) {
             Log.e(TAG, "getProfile: ${e.message.toString()}")
             }
     }
 
-    fun getPresensi(): Flow<List<PresensiResponse>> = flow {
-        val response = apiService.getPresensi()
-        emit(response)
-    }
 
-    fun getRiwayatPresensi(): Flow<List<PresensiResponse>> = flow {
-        val response = apiService.getRiwayatPresensi()
-        emit(response)
-    }
-
-    fun createPresensiById(id: Int, status: String): LiveData<Result<DefaultResponse>> = liveData {
-        val json = JSONObject()
-        json.put("status", status)
-        val requestBody = json.toString().toRequestBody("application/json".toMediaTypeOrNull())
-        Result.Loading
-        try {
-            val response = apiService.createPresensiById(id, requestBody)
-            emit(Result.Success(response))
-        } catch (e: Exception) {
-            emit(Result.Error(e.message.toString()))
-            }
-    }
 
     fun getHome(): Flow<HomeResponse> = flow {
         try {
@@ -182,10 +152,16 @@ class Repository(private val apiService: ApiService) {
             }
     }
 
+
+    fun getPengumuman(): Flow<List<PengumumanResponse>> = flow {
+        val response = apiService.getPengumuman()
+        emit(response)
+    }
+
     fun getPengumumanById(id: Int): Flow<PengumumanResponse> = flow {
         val response = apiService.getPengumumanById(id).first()
         emit(response)
-    }
+        }
 
     fun getAllPrestasi(): Flow<List<PrestasiResponse>> = flow {
         val response = apiService.getAllPrestasi()
@@ -252,7 +228,7 @@ class Repository(private val apiService: ApiService) {
         try {
             val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), uri.readBytes())
             val imageMultiPart =
-                MultipartBody.Part.createFormData("file", "mahasiswa",requestFile)
+                MultipartBody.Part.createFormData("image", "mahasiswa",requestFile)
             val response = apiService.changePhoto(imageMultiPart)
             Result.Success(response)
         } catch (e: Throwable) {
@@ -263,6 +239,30 @@ class Repository(private val apiService: ApiService) {
                 uri.close()
                 }
             }
+
+    fun getPresensi() = flow<List<PresensiResponse>> {
+        val response = apiService.getPresensi()
+        emit(response)
+    }
+
+    fun getRiwayatPresensi() = flow<List<PresensiResponse>> {
+        val response = apiService.getRiwayatPresensi()
+        emit(response)
+    }
+
+    suspend fun createPresensiById(id: Int, status: String) = flow {
+        val json = JSONObject()
+        json.put("status", status)
+        val jsonString = json.toString()
+        val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
+
+        try {
+            val response = apiService.createPresensiById(id, requestBody)
+            emit(Result.Success(response))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+            }
+        }
 
     companion object {
         private const val TAG = "Repository"
