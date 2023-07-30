@@ -153,15 +153,21 @@ class Repository(private val apiService: ApiService) {
     }
 
 
-    fun getPengumuman(): Flow<List<PengumumanResponse>> = flow {
+//    fun getPengumuman(): Flow<List<PengumumanResponse>> = flow {
+//        val response = apiService.getPengumuman()
+//        emit(response)
+//    }
+
+    fun getAllPengumuman(): Flow<List<PengumumanResponse>> = flow {
         val response = apiService.getPengumuman()
         emit(response)
     }
 
-    fun getPengumumanById(id: Int): Flow<PengumumanResponse> = flow {
-        val response = apiService.getPengumumanById(id).first()
-        emit(response)
-        }
+
+//    fun getPengumumanById(id: Int): Flow<PengumumanResponse> = flow {
+//        val response = apiService.getPengumumanById(id).first()
+//        emit(response)
+//        }
 
     fun getAllPrestasi(): Flow<List<PrestasiResponse>> = flow {
         val response = apiService.getAllPrestasi()
@@ -261,6 +267,28 @@ class Repository(private val apiService: ApiService) {
             emit(Result.Success(response))
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
+            }
+        }
+
+    fun updateWisuda(
+        pengalaman_organisasi: String, pengalaman_pelatihan: String, pengalaman_prestasi: String,
+        nama_ayah: String, alamat_ortu: String,judul_tugas_akhir:String
+    ): LiveData<Result<DefaultResponse>> = liveData {
+        val json = JSONObject()
+        json.put("pengalaman_organisasi", pengalaman_organisasi)
+        json.put("pengalaman_pelatihan", pengalaman_pelatihan)
+        json.put("pengalaman_prestasi", pengalaman_prestasi)
+        json.put("nama_ayah", nama_ayah)
+        json.put("alamat_ortu", alamat_ortu)
+        json.put("judul_tugas_akhir", judul_tugas_akhir)
+        val requestBody = json.toString().toRequestBody("application/json".toMediaType())
+        emit(Result.Loading)
+        try {
+            val respone = apiService.updateWisuda(requestBody)
+            Log.d(TAG, respone.toString())
+            emit(Result.Success(respone))
+        } catch (e: Exception) {
+            Log.e(TAG, "updateWisuda: ${e.message.toString()}")
             }
         }
 

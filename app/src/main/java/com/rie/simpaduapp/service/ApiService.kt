@@ -120,13 +120,6 @@ interface ApiService {
         @Path("id") id: Int
     ):DefaultResponse
 
-    @GET("/api/pengumuman")
-    suspend fun getPengumuman(): List<PengumumanResponse>
-
-    @GET("/api/pengumuman/{id}")
-    suspend fun getPengumumanById(
-        @Path("id") id: Int,
-    ): List<PengumumanResponse>
 
     @GET("/api/presensidibuka")
     suspend fun getPresensi(): List<PresensiResponse>
@@ -143,7 +136,18 @@ interface ApiService {
     ):DefaultResponse
 
 
+    @GET("/api/pengumuman")
+    suspend fun getPengumuman(): List<PengumumanResponse>
 
+    @GET("/api/pengumumanByID/{id}")
+    suspend fun getPengumumanById(
+        @Path("id") id: Int
+    ): List<PengumumanResponse>
+
+    @PUT("/api/updateWisuda")
+    suspend fun updateWisuda(
+        @Body updateWisuda: RequestBody
+    ):DefaultResponse
 }
 
 

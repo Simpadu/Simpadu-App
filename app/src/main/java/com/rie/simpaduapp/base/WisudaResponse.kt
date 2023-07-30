@@ -5,52 +5,49 @@ import java.time.LocalDate
 
 data class WisudaResponse(
 
-    @SerializedName("nim_mahasiswa")
-    val nimMahasiswa: String,
-
     @SerializedName("pengalaman_organisasi")
-    val pengalamanOrganisasi: String,
+    val pengalaman_organisasi: String,
 
     @SerializedName("pengalaman_pelatihan")
-    val pengalamanPelatihan: String,
+    val pengalaman_pelatihan: String,
 
     @SerializedName("pengalaman_prestasi")
-    val pengalamanPrestasi: String,
+    val pengalaman_prestasi: String,
 
     @SerializedName("token_kuisioner")
-    val tokenKuisioner: String,
+    val token_kuisioner: String,
 
     @SerializedName("no_wa")
-    val noWa: Int,
+    val no_wa: Any? = null,
 
     @SerializedName("nama_ayah")
-    val namaAyah: String,
+    val nama_ayah: String,
 
     @SerializedName("alamat_ortu")
-    val alamatOrtu: String,
+    val alamat_ortu: String,
 
     @SerializedName("no_hp_ortu")
-    val noHpOrtu: Int,
+    val no_hp_ortu: Any? = null,
 
     @SerializedName("judul_tugas_akhir")
-    val judulTA: String,
+    val judul_tugas_akhir: String,
 
     @SerializedName("tanggal_ujian")
-    val tanggalUjian: LocalDate,
+    val tanggal_ujian: Any? = null,
 
     @SerializedName("dosen_pembimbing1_id")
-    val dosenPembimbing1: Int,
+    val dosen_pembimbing1_id: Any? = null,
 
     @SerializedName("dosen_pembimbing2_id")
-    val dosenPembimbing2: Int,
+    val dosen_pembimbing2_id: Any? = null,
 
     @SerializedName("dosen_penguji1_id")
-    val dosenPenguji1: Int,
+    val dosen_penguji1_id: Any? = null,
 
     @SerializedName("dosen_penguji2_id")
-    val dosenPenguji2: Int,
+    val dosen_penguji2_id: Any? = null,
 
     @SerializedName("dosen_penguji3_id")
-    val dosenPenguji3:Int,
+    val dosen_penguji3_id:Any?=null,
 
-    )
+)

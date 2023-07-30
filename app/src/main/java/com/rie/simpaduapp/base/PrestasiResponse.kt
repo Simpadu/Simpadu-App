@@ -5,31 +5,25 @@ import java.time.LocalDate
 
 data class PrestasiResponse(
 
-    @SerializedName("nim_mahasiswa")
-    val nimMahasiswa: String,
-
     @SerializedName("nama_prestasi")
-    val namaPrestasi: String,
+    val nama_prestasi: String,
 
     @SerializedName("tingkatan_lomba")
-    val tingkatanLomba: TingkatanLombaEnum,
+    val tingkatan_lomba: String,
 
     @SerializedName("jenis_peserta")
-    val jenisPeserta: JenisPesertaEnum,
+    val jenis_peserta: String,
 
     @SerializedName("jumlah_peserta")
-    val jumlahPeserta: Int,
+    val jumlah_peserta: String,
 
     @SerializedName("capaian_prestasi")
-    val capaianPrestasi: CapaianPrestasiEnum,
+    val capaian_prestasi: String,
 
     @SerializedName("tanggal_lomba")
-    val tanggalLomba: LocalDate,
+    val tanggalLomba: Any? = null,
 
     @SerializedName("pembina")
-    val pembina: Int,
+    val pembina: Any?=null,
 
-    @SerializedName("bukti_prestasi")
-    val buktiPrestasi: String,
-
-    )
+)
