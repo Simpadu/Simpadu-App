@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName
 import java.time.LocalDate
 
 data class PrestasiResponse(
+    @SerializedName("id")
+    val id: Int,
 
     @SerializedName("nama_prestasi")
     val nama_prestasi: String,
@@ -18,12 +20,6 @@ data class PrestasiResponse(
     val jumlah_peserta: String,
 
     @SerializedName("capaian_prestasi")
-    val capaian_prestasi: String,
+    val capaian_prestasi:String,
 
-    @SerializedName("tanggal_lomba")
-    val tanggalLomba: Any? = null,
-
-    @SerializedName("pembina")
-    val pembina: Any?=null,
-
-)
+    )

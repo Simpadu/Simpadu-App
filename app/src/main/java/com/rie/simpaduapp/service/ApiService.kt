@@ -48,16 +48,24 @@ interface ApiService {
     suspend fun getWisuda(): WisudaResponse
 
 
+    @GET("/api/getAllPrestasi")
+    suspend fun getAllPrestasi(): List<PrestasiResponse>
+
+    @POST("/api/createPrestasi")
+    suspend fun createPrestasi(
+        @Body prestasiInput: RequestBody
+    ): DefaultResponse
+
     @PUT("/api/updatePrestasi/{id}")
     suspend fun updatePrestasi(
+        @Path("id") id: Int,
         @Body updatePrestasi: RequestBody
     ): DefaultResponse
 
-    @GET("/api/getAllPrestasi")
-    suspend fun getPrestasi(): PrestasiResponse
-
     @DELETE("/api/deletePrestasi/{id}")
-    suspend fun deletePrestasi():DefaultResponse
+    suspend fun deletePrestasi(
+        @Path("id") id: Int
+    ):DefaultResponse
 
     @POST("/api/resetemail")
     suspend fun createResetEmail(
@@ -101,32 +109,13 @@ interface ApiService {
     suspend fun getHome(): HomeResponse
 
 
-    @GET("/api/getAllPrestasi")
-    suspend fun getAllPrestasi(): List<PrestasiResponse>
-
-    @POST("/api/createPrestasi")
-    suspend fun createPrestasi(
-        @Body prestasiInput: RequestBody
-    ): DefaultResponse
-
-    @PUT("/api/updatePrestasi/{id}")
-    suspend fun updatePrestasi(
-        @Path("id") id: Int,
-        @Body updatePrestasi: RequestBody
-    ): DefaultResponse
-
-    @DELETE("/api/deletePrestasi/{id}")
-    suspend fun deletePrestasi(
-        @Path("id") id: Int
-    ):DefaultResponse
-
 
     @GET("/api/presensidibuka")
     suspend fun getPresensi(): List<PresensiResponse>
 
 
     @GET("/api/presensi")
-    suspend fun getRiwayatPresensi(): List<PresensiResponse>
+    suspend fun getRiwayatPresensi(): List<RiwayatPresensiResponse>
 
 
     @POST("/api/presensicreate/{id}")

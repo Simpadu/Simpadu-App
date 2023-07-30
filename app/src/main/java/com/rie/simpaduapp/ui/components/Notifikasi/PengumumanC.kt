@@ -51,7 +51,7 @@ fun PengumumanC(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 5.dp)
+            .padding(top = 10.dp)
             .clickable {
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                 openUrl.launch(browserIntent)
