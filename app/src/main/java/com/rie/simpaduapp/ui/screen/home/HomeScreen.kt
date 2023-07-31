@@ -33,50 +33,19 @@ import kotlinx.coroutines.flow.collect
 @Composable
 fun HomeScreen(
     navController: NavHostController,
-    viewModel: HomeViewModel = viewModel(
-        factory = ViewModelFactory(LocalContext.current)
-    )
+
 ) {
-    var namak by remember { mutableStateOf("Mahasiswa") }
-
-    LaunchedEffect(Unit) {
-        viewModel.nama.collect { user ->
-            when (user) {
-                is UiState.Loading -> {
-                    viewModel.getNamaku()
-                }
-                is UiState.Success -> {
-                    namak = user.data.nama.toString()
-                }
-                else -> {
-
-                }
-            }
-        }
-    }
-
-
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-//                        Text("Hi ")
-                        Text(
-                            text ="Hai, MahasiswaGuest",
-                            color = Color.Gray,
-                            fontSize = 17.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
+//                    User()
+                        Text(text = "Simpadu")
                 },
                 backgroundColor = Color.White,
                 elevation = 2.dp,
                 actions = {
-                    IconButton(onClick = { /* Aksi saat ikon ditekan */ }) {
+                    IconButton(onClick = { }) {
                         Icon(Icons.Default.Search, contentDescription = "Search")
                     }
                 }
@@ -133,3 +102,5 @@ fun HomeScreen(
         }
     }
 }
+
+

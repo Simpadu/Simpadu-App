@@ -34,17 +34,19 @@ class HomeViewModel (private val repository: Repository) : ViewModel()  {
         get() = _ipk
 
 
-    private val _nama: MutableStateFlow<UiState<MahasiswaResponse>> = MutableStateFlow(UiState.Loading)
-    val nama: MutableStateFlow<UiState<MahasiswaResponse>>
+    private val _nama: MutableStateFlow<UiState<MahasiswaResponse>> = MutableStateFlow(
+        UiState.Loading)
+    val nama: StateFlow<UiState<MahasiswaResponse>>
         get() = _nama
 
-    fun getNamaku() {
+    fun getUserMahasiswa(){
         viewModelScope.launch {
             repository.getProfile()
                 .catch {
                     _nama.value = UiState.Error(it.message.toString())
+
                 }
-                .collect { nama ->
+                .collect{nama ->
                     _nama.value = UiState.Success(nama)
                 }
         }

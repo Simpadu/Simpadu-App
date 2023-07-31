@@ -6,66 +6,66 @@ import java.time.LocalDate
 data class MahasiswaResponse(
 
     @field:SerializedName("nim")
-    val nim: String? = null,
+    val nim: String,
 
     @field:SerializedName("nama")
-    val nama: String? = null,
+    val nama: String,
 
     @field:SerializedName("foto_profil")
-    val foto_profil: String? = null,
+    val foto_profil: String,
 
     @field:SerializedName("nik")
-    val nik: Char? = null,
+    val nik: Char,
 
     @field:SerializedName("tanggal_lahir")
-    val tanggal_lahir: LocalDate? = null,
+    val tanggal_lahir: LocalDate,
 
     @field:SerializedName("tempat_lahir")
-    val tempat_lahir: String? = null,
+    val tempat_lahir: String,
 
     @field:SerializedName("no_hp")
-    val no_hp: String? = null,
+    val no_hp: String,
 
     @field:SerializedName("email")
-    val email: String? = null,
+    val email: String,
 
     @field:SerializedName("alamat")
-    val alamat: String? = null,
+    val alamat: String,
 
     @field:SerializedName("semester")
-    val semester: Byte? = null,
+    val semester: Byte,
 
     @field:SerializedName("nama_ibu")
-    val nama_ibu: String? = null,
+    val nama_ibu: String,
 
     @field:SerializedName("nama_ayah")
-    val nama_ayah: String? = null,
+    val nama_ayah: String,
 
     @field:SerializedName("kode_pos")
-    val kode_pos: Char? = null,
+    val kode_pos: Char,
 
     @field:SerializedName("kecamatan")
-    val kecamatan: String? = null,
+    val kecamatan: String,
 
     @field:SerializedName("kelurahan")
-    val kelurahan: String? = null,
+    val kelurahan: String,
 
     @field:SerializedName("virtual_account")
-    val virtual_account: String? = null,
+    val virtual_account: String,
 
     @field:SerializedName("status_mahasiswa")
-    val status_mahasiswa: String? = null,
+    val status_mahasiswa: String,
 
     @field:SerializedName("kelas_id")
-    val kelas_id: Int? = null,
+    val kelas_id: Int,
 
     @field:SerializedName("agama_id")
-    val agama_id: Int? = null,
+    val agama_id: Int,
 
     @field:SerializedName("dosen_wali")
-    val dosen_wali: Int? = null,
+    val dosen_wali: Int,
 
     @field:SerializedName("status")
-    val status: String?=null,
+    val status: String,
 
     )

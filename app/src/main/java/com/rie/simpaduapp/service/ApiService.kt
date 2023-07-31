@@ -22,8 +22,6 @@ interface ApiService {
         @Body updateProfile: RequestBody
     ): DefaultResponse
 
-    @GET("/api/getMahasiswa")
-    suspend fun  getProfile(): MahasiswaResponse
 
 
 
@@ -81,24 +79,19 @@ interface ApiService {
     @GET("/api/jadwalkuliah")
     suspend fun getJadwalKuliah(): List<JadwalResponse>
 
-
-
     @GET("/api/ukt")
-    suspend fun ukt(): UktResponse
+    suspend fun getukt(): UktResponse
 
-    @GET("/api/riwayatukt")
-    suspend fun riwayatUkt(): List<RiwayatUktResponse>
+
+    @GET("/api/getMahasiswa")
+    suspend fun  getProfile(): MahasiswaResponse
+
+
 
     @GET("/api/krs/{semester}")
     suspend fun getkrsbysemester(
         @Path("semester") krssemester: Int
     ): List<KrsResponse>
-
-
-
-
-
-
 
     @GET("/api/home")
     suspend fun getHome(): HomeResponse
@@ -111,6 +104,9 @@ interface ApiService {
 
     @GET("/api/presensi")
     suspend fun getRiwayatPresensi(): List<RiwayatPresensiResponse>
+
+    @GET("/api/riwayatukt")
+    suspend fun getRiwayatUkt(): List<RiwayatUktResponse>
 
 
     @POST("/api/presensicreate/{id}")

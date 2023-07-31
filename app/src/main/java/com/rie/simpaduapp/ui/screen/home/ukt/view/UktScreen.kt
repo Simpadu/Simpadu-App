@@ -58,7 +58,7 @@ fun UktScreen(modifier: Modifier = Modifier, navigateBack: () -> Unit) {
                     }
                 }
                 when (selectedTabIndex.value) {
-                    0 -> Payment()
+                    0 ->  UktP()
                     1 -> HistoryUkt()
 
                 }

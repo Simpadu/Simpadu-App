@@ -41,7 +41,7 @@ fun Prestasi(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 5.dp),
+                .padding(top = 16.dp),
             backgroundColor = Color.White,
             shape = RoundedCornerShape(8.dp) ,
             elevation = 8.dp

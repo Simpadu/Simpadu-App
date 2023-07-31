@@ -13,16 +13,16 @@ data class UktResponse(
     val prodi: String,
 
     @SerializedName("virtual_akun")
-    val virtualAkun: String,
+    val virtual_akun: String,
 
     @SerializedName("status_bebas_masalah")
-    val statusBebasMasalah: String,
+    val status_bebas_masalah: String,
 
     @SerializedName("status_spp_semester_sebelumnya")
     val statusSppSemesterSebelumnya: String,
 
     @SerializedName("kode_pembayaran")
-    val kodePembayaran: String,
+    val kode_pembayaran: String,
 
     @SerializedName("catatan")
     val catatan:String

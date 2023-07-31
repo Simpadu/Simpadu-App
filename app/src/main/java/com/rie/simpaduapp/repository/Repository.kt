@@ -19,6 +19,7 @@ import org.json.JSONObject
 import java.io.InputStream
 import java.time.LocalDate
 import com.rie.simpaduapp.base.Result
+import kotlinx.coroutines.time.delay
 
 class Repository(private val apiService: ApiService) {
 
@@ -47,32 +48,6 @@ class Repository(private val apiService: ApiService) {
             Log.e(TAG, "logoutRepository: ${e.message.toString()}")
         }
     }
-
-
-    fun createPrestasi(
-        nama_prestasi: String, tingkatan_lomba: TingkatanLombaEnum, jenis_peserta: JenisPesertaEnum,
-        jumlah_peserta: Int, capaian_prestasi: CapaianPrestasiEnum, tanggal_lomba: LocalDate,
-        pembina: Int, bukti_prestasi: String
-    ): LiveData<Result<DefaultResponse>> = liveData {
-        val json = JSONObject().apply {
-            put("nama_prestasi", nama_prestasi)
-            put("tingkatan_lomba", tingkatan_lomba.name)
-            put("jenis_peserta", jenis_peserta.name)
-            put("jumlah_peserta", jumlah_peserta)
-            put("capaian_prestasi", capaian_prestasi.name)
-            put("tanggal_lomba", tanggal_lomba.toString())
-            put("pembina", pembina)
-            put("bukti_prestasi", bukti_prestasi)
-        }
-        val requestBody = json.toString().toRequestBody("application/json".toMediaTypeOrNull())
-        Result.Loading
-        try {
-            val response = apiService.createPrestasi(requestBody)
-            emit(Result.Success(response))
-        } catch (e: IOException) {
-            emit(Result.Error(e.message.toString()))
-            }
-        }
 
 
     fun updateProfile(
@@ -154,21 +129,13 @@ class Repository(private val apiService: ApiService) {
 
 
 
-    fun getProfile(): Flow<MahasiswaResponse> = flow {
-        val response = apiService. getProfile()
-        val responseData = mutableStateOf("")
-        responseData.value = response.nama.toString()
-        emit(response)
-    }
+
 
 
     fun getAllPengumuman(): Flow<List<PengumumanResponse>> = flow {
         val response = apiService.getPengumuman()
         emit(response)
     }
-
-
-
 
 
     fun getHome(): Flow<HomeResponse> = flow {
@@ -187,22 +154,49 @@ class Repository(private val apiService: ApiService) {
 
 
 
-
     fun getPresensi() = flow<List<PresensiResponse>> {
         val response = apiService.getPresensi()
         emit(response)
     }
+
+    suspend fun getRiwayatUkt(): List<RiwayatUktResponse> = withContext(Dispatchers.IO) {
+        try {
+            return@withContext apiService.getRiwayatUkt()
+        } catch (e: Exception) {
+            throw Exception("Failed to get riwayat ukt: ${e.message}")
+        }
+    }
+
+    fun getUkt() : Flow<UktResponse> = flow {
+        try {
+            val responseData = mutableStateOf("")
+            val response = apiService.getukt()
+            responseData.value = response.virtual_akun.toString()
+            emit(response)
+        } catch (e: Exception) {
+            Log.e(TAG, "getukt: ${e.message.toString()}")
+        }
+    }
+
+    fun getProfile(): Flow<MahasiswaResponse> = flow {
+        try {
+            val responseData = mutableStateOf("")
+            val response = apiService. getProfile()
+            responseData.value = response.nama.toString()
+            emit(response)
+        } catch (e: Exception) {
+            Log.e(TAG, "getukt: ${e.message.toString()}")
+        }
+    }
+
+
+
 
     fun getRiwayatPresensi() = flow<List<RiwayatPresensiResponse>> {
         val response = apiService.getRiwayatPresensi()
         emit(response)
     }
 
-
-    fun getAllPrestasi(): Flow<List<PrestasiResponse>> = flow {
-        val response = apiService.getAllPrestasi()
-        emit(response)
-    }
 
 
 
@@ -263,27 +257,6 @@ class Repository(private val apiService: ApiService) {
 
 
 
-
-    fun createPrestasi(
-        nama_prestasi: String, tingkatan_lomba: String,jenis_peserta: String, jumlah_peserta: Int,
-        capaian_prestasi: String
-    ): LiveData<Result<DefaultResponse>> = liveData {
-        val json = JSONObject()
-        json.put("nama_prestasi", nama_prestasi)
-        json.put("tingkatan_lomba", tingkatan_lomba)
-        json.put("jenis_peserta", jenis_peserta)
-        json.put("jumlah_peserta", jumlah_peserta)
-        json.put("capaian_prestasi", capaian_prestasi)
-        val requestBody = json.toString().toRequestBody("application/json".toMediaTypeOrNull())
-        emit(Result.Loading)
-        try {
-            val response = apiService.createPrestasi(requestBody)
-            emit(Result.Success(response))
-        } catch (e: Exception) {
-            Log.e(TAG, "createPrestasi: ${e.message.toString()}")
-            emit(Result.Error(e.message.toString()))
-        }
-    }
 
     fun getPrestasi(): Flow<List<PrestasiResponse>> = flow {
         val response = apiService.getAllPrestasi()

@@ -82,4 +82,6 @@ class PresenceViewModel(private val repository: Repository) :  ViewModel()  {
         }
     }
 
+
+
 }
