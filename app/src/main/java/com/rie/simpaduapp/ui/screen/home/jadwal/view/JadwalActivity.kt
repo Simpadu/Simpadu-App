@@ -12,7 +12,7 @@ class JadwalActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SimpaduAppTheme {
-                JadwalScreen()
+                JadwalScreen(navigateBack = { onBackPressed() })
             }
         }
     }

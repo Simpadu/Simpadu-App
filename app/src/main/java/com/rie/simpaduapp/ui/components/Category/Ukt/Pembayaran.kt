@@ -27,13 +27,10 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import com.rie.simpaduapp.R
 
 @Composable
-fun Pembayaran() {
-    PembayaranContent()
-}
-
-@Composable
-fun PembayaranContent(
-    modifier: Modifier = Modifier
+fun Pembayaran(
+    modifier: Modifier = Modifier,
+    virtualAkun: String,
+    statusBebasMasalah: String,
 ) {
     Column(
         horizontalAlignment = CenterHorizontally,
@@ -53,22 +50,17 @@ fun PembayaranContent(
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Hai",
-                        color = Color.Gray,
-                        fontSize = 15.sp
-                    )
-                    Text(
-                        text = "John Doe",
+                        text = statusBebasMasalah,
                         color = Color.Gray,
                         fontSize = 17.sp,
                         fontWeight = Bold
                     )
                     Text(
-                        text = "john.doe@example.com",
-                        color = Color.DarkGray,
-                        fontSize = 13.sp,
-                        modifier = Modifier.padding(top = 7.dp)
+                        text = virtualAkun,
+                        color = Color.Gray,
+                        fontSize = 15.sp
                     )
+
                 }
             }
         }

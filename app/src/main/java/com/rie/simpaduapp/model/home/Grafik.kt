@@ -6,4 +6,4 @@ data class Grafik (
     val id: Long,
     val title: String,
     val status: String
-        )
+    )

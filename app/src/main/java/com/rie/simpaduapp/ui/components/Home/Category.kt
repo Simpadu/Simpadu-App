@@ -1,7 +1,6 @@
 package com.rie.simpaduapp.ui.components
 
 import android.content.Intent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -17,7 +16,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rie.simpaduapp.R
@@ -29,8 +27,6 @@ import com.rie.simpaduapp.ui.screen.home.prestasi.view.AwardsActivity
 import com.rie.simpaduapp.ui.screen.home.skm.view.SkmActivity
 import com.rie.simpaduapp.ui.screen.home.ukt.view.UktActivity
 import com.rie.simpaduapp.ui.screen.home.wisuda.view.GraduationActivity
-import com.rie.simpaduapp.ui.screen.profile.view.PrivasiPolicyActivity
-import java.util.Locale.Category
 
 @Composable
 fun Category(onItemClick: (String) -> Unit) {

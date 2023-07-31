@@ -20,6 +20,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.res.painterResource
@@ -27,13 +29,10 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import com.rie.simpaduapp.R
 
 @Composable
-fun Prestasi() {
-    PrestasiContent()
-}
-
-@Composable
-fun PrestasiContent(
-    modifier: Modifier = Modifier
+fun Prestasi(
+    modifier: Modifier = Modifier,
+    nama_prestasi: String,
+    onDeleteClick: () -> Unit
 ) {
     Column(
         horizontalAlignment = CenterHorizontally,
@@ -42,7 +41,7 @@ fun PrestasiContent(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 5.dp),
+                .padding(top = 16.dp),
             backgroundColor = Color.White,
             shape = RoundedCornerShape(8.dp) ,
             elevation = 8.dp
@@ -53,25 +52,27 @@ fun PrestasiContent(
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Hai",
-                        color = Color.Gray,
-                        fontSize = 15.sp
-                    )
-                    Text(
-                        text = "John Doe",
+                        text = nama_prestasi,
                         color = Color.Gray,
                         fontSize = 17.sp,
                         fontWeight = Bold
                     )
-                    Text(
-                        text = "john.doe@example.com",
-                        color = Color.DarkGray,
-                        fontSize = 13.sp,
-                        modifier = Modifier.padding(top = 7.dp)
+                }
+                IconButton(
+                    onClick = onDeleteClick,
+                    modifier = Modifier.align(Alignment.CenterVertically)
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_delete),
+                        contentDescription = "Delete Icon",
+                        tint = Color.Red
                     )
                 }
             }
         }
     }
 }
+
+
+
 

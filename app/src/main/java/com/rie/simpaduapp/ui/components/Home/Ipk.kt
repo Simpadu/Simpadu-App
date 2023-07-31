@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -20,21 +19,26 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.rie.simpaduapp.R
+import com.rie.simpaduapp.ui.common.UiState
+import com.rie.simpaduapp.ui.screen.ViewModelFactory
+import com.rie.simpaduapp.ui.screen.home.HomeViewModel
 
 @Composable
-fun Ipk() {
-    IpkContent()
-}
-
-@Composable
-fun IpkContent(
-    modifier: Modifier = Modifier
+fun Ipk(
+    modifier: Modifier = Modifier,
+    viewModel: HomeViewModel = viewModel(
+        factory = ViewModelFactory(LocalContext.current)
+    ),
 ) {
+    var ipk by remember { mutableStateOf("IPK Guest") }
     Column(
         horizontalAlignment = CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -48,27 +52,33 @@ fun IpkContent(
             shape = RoundedCornerShape(8.dp) ,
             elevation = 8.dp
         ) {
+            viewModel.ipk.collectAsState(initial = UiState.Loading).value.let { user ->
+                when (user) {
+                    is UiState.Loading -> {
+                        viewModel.getIpk()
+                    }
+                    is UiState.Success -> {
+                        ipk = user.data.ipk.toString()
+                    }
+                    else -> {
+                    }
+                }
+            }
             Row(
                 modifier = Modifier.padding(16.dp),
                 verticalAlignment = CenterVertically
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Hai",
+                        text = "IPK",
                         color = Color.Gray,
                         fontSize = 15.sp
                     )
                     Text(
-                        text = "John Doe",
+                        text = ipk,
                         color = Color.Gray,
                         fontSize = 17.sp,
                         fontWeight = Bold
-                    )
-                    Text(
-                        text = "john.doe@example.com",
-                        color = Color.DarkGray,
-                        fontSize = 13.sp,
-                        modifier = Modifier.padding(top = 7.dp)
                     )
                 }
             }

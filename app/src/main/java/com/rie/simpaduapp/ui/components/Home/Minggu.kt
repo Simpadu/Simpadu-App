@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -20,21 +19,26 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.rie.simpaduapp.R
+import com.rie.simpaduapp.ui.common.UiState
+import com.rie.simpaduapp.ui.screen.ViewModelFactory
+import com.rie.simpaduapp.ui.screen.home.HomeViewModel
 
 @Composable
-fun Minggu() {
-    MingguContent()
-}
-
-@Composable
-fun MingguContent(
-    modifier: Modifier = Modifier
+fun Minggu(
+    modifier: Modifier = Modifier,
+    viewModel: HomeViewModel = viewModel(
+        factory = ViewModelFactory(LocalContext.current)
+    ),
 ) {
+    var minggu by remember { mutableStateOf("Temansawit Guest") }
     Column(
         horizontalAlignment = CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -45,30 +49,36 @@ fun MingguContent(
                 .fillMaxWidth()
                 .padding(top = 5.dp),
             backgroundColor = Color.White,
-            shape = RoundedCornerShape(8.dp) ,
+            shape = RoundedCornerShape(8.dp),
             elevation = 8.dp
         ) {
+            viewModel.minggu.collectAsState(initial = UiState.Loading).value.let { user ->
+                when (user) {
+                    is com.rie.simpaduapp.ui.common.UiState.Loading -> {
+                        viewModel.getHome()
+                    }
+                    is com.rie.simpaduapp.ui.common.UiState.Success -> {
+                        minggu = user.data.minggu.toString()
+                    }
+                    else -> {
+                    }
+                }
+            }
             Row(
                 modifier = Modifier.padding(16.dp),
                 verticalAlignment = CenterVertically
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Hai",
+                        text = "Pertemuan",
                         color = Color.Gray,
                         fontSize = 15.sp
                     )
                     Text(
-                        text = "John Doe",
+                        text = minggu,
                         color = Color.Gray,
                         fontSize = 17.sp,
                         fontWeight = Bold
-                    )
-                    Text(
-                        text = "john.doe@example.com",
-                        color = Color.DarkGray,
-                        fontSize = 13.sp,
-                        modifier = Modifier.padding(top = 7.dp)
                     )
                 }
             }

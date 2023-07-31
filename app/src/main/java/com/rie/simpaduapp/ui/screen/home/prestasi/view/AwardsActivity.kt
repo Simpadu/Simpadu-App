@@ -12,7 +12,7 @@ class AwardsActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SimpaduAppTheme {
-                AwardsScreen ()
+                AwardsScreen (navigateBack = { onBackPressed() })
             }
         }
     }

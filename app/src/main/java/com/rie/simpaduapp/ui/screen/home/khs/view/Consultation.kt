@@ -30,7 +30,7 @@ fun ConsultationContent(
             .padding(16.dp)
     ) {
         Text(
-            text = stringResource(R.string.menu_presensi),
+            text = "Konsultasi KHS",
             style = MaterialTheme.typography.h4
         )
 

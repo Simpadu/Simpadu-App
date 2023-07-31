@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -20,21 +19,26 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.rie.simpaduapp.R
+import com.rie.simpaduapp.ui.common.UiState
+import com.rie.simpaduapp.ui.screen.ViewModelFactory
+import com.rie.simpaduapp.ui.screen.home.HomeViewModel
 
 @Composable
-fun Tsks() {
-    TsksContent()
-}
-
-@Composable
-fun TsksContent(
-    modifier: Modifier = Modifier
+fun Tsks(
+    modifier: Modifier = Modifier,
+    viewModel: HomeViewModel = viewModel(
+        factory = ViewModelFactory(LocalContext.current)
+    ),
 ) {
+    var total_sks by remember { mutableStateOf("Total SKS Guest") }
     Column(
         horizontalAlignment = CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -48,27 +52,36 @@ fun TsksContent(
             shape = RoundedCornerShape(8.dp) ,
             elevation = 8.dp
         ) {
+            viewModel.total_sks.collectAsState(initial = com.rie.simpaduapp.ui.common.UiState.Loading).value.let { user ->
+                when (user) {
+                    is com.rie.simpaduapp.ui.common.UiState.Loading -> {
+                        viewModel.getSks()
+                    }
+                    is com.rie.simpaduapp.ui.common.UiState.Success -> {
+                        total_sks = user.data.total_sks.toString()
+                    }
+                    else -> {
+                        // Handle other cases here if necessary
+                        // For example, you might want to show an error message or take other actions.
+                    }
+                }
+            }
+
             Row(
                 modifier = Modifier.padding(16.dp),
                 verticalAlignment = CenterVertically
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Hai",
+                        text = "Total SKS",
                         color = Color.Gray,
                         fontSize = 15.sp
                     )
                     Text(
-                        text = "John Doe",
+                        text = total_sks,
                         color = Color.Gray,
                         fontSize = 17.sp,
                         fontWeight = Bold
-                    )
-                    Text(
-                        text = "john.doe@example.com",
-                        color = Color.DarkGray,
-                        fontSize = 13.sp,
-                        modifier = Modifier.padding(top = 7.dp)
                     )
                 }
             }

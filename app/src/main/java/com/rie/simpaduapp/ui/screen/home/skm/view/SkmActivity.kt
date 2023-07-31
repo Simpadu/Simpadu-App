@@ -12,7 +12,7 @@ class SkmActivity  : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SimpaduAppTheme {
-                SkmScreen ()
+                SkmScreen (navigateBack = { onBackPressed() })
             }
         }
     }

@@ -53,18 +53,18 @@ fun KonsultasiKRSContent(
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Hai",
+                        text = "2023",
                         color = Color.Gray,
                         fontSize = 15.sp
                     )
                     Text(
-                        text = "John Doe",
+                        text = "Semester 2",
                         color = Color.Gray,
                         fontSize = 17.sp,
                         fontWeight = Bold
                     )
                     Text(
-                        text = "john.doe@example.com",
+                        text = "Diterima",
                         color = Color.DarkGray,
                         fontSize = 13.sp,
                         modifier = Modifier.padding(top = 7.dp)

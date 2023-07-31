@@ -1,39 +1,45 @@
 package com.rie.simpaduapp.ui.screen.notification
 
-import android.app.Notification
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rie.simpaduapp.R
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import com.rie.simpaduapp.ui.components.navigation.BottomBar
+import com.rie.simpaduapp.ui.screen.ViewModelFactory
+import com.rie.simpaduapp.ui.screen.home.HomeViewModel
 import com.rie.simpaduapp.ui.screen.notification.view.Announcement
 import com.rie.simpaduapp.ui.screen.notification.view.Reminder
-import com.rie.simpaduapp.ui.screen.presensi.PresenceScreen
-import com.rie.simpaduapp.ui.theme.SimpaduAppTheme
+import com.rie.simpaduapp.ui.screen.notification.viewmodel.NotificationViewModel
 
 @Composable
-fun NotificationScreen() {
+fun NotificationScreen(navController: NavHostController
+                       ) {
     val tabs = remember { mutableStateListOf("Notifikasi", "Pengumuman") }
     val selectedTabIndex = remember { mutableStateOf(0) }
+
+
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text("Notifikasi") },
-                contentColor = Color.Black,
-                elevation = 10.dp
+            )
+        },
+        bottomBar = {
+            BottomBar(
+                modifier = Modifier,
+                navController = navController
             )
         },
         content = { it
@@ -66,8 +72,4 @@ fun NotificationScreen() {
 }
 
 
-@Preview
-@Composable
-fun NotificationScreenPreview() {
-    NotificationScreen()
-}
+
