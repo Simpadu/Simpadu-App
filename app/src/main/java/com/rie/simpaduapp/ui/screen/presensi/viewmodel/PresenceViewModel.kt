@@ -22,26 +22,28 @@ import okhttp3.RequestBody.Companion.toRequestBody
 
 class PresenceViewModel(private val repository: Repository) :  ViewModel()  {
 
-    private val _uiState = MutableLiveData<UiState<DefaultResponse>>()
-    val uiState: LiveData<UiState<DefaultResponse>> get() = _uiState
-
-
-    private val _id = MutableLiveData<Int>()
-    val id: LiveData<Int> get() = _id
-
-    // Function to set the id
-    fun setId(id: Int) {
-        _id.value = id
-    }
-
-    // Function to get the id
-    fun getId(): Int {
-        return id.value ?: 0
-    }
-
      suspend fun createPresensiById(id: Int, status: String) {
          Log.d("PresenceViewModel", "createPresensiById - id: $id, status: $status")
         repository.createById(id, status)
+    }
+
+
+
+    private val _status: MutableStateFlow<Result<List<RiwayatPresensiResponse>>> =
+        MutableStateFlow(Result.Loading)
+    val status: StateFlow<Result<List<RiwayatPresensiResponse>>>
+        get() = _status
+
+    fun getRiwayatPresence() {
+        viewModelScope.launch {
+            repository.getRiwayatPresensi()
+                .catch {
+                    _status.value = Result.Error(it.message.toString())
+                }
+                .collect { pertemuan ->
+                    _status.value = Result.Success(pertemuan)
+                }
+        }
     }
 
 
@@ -50,26 +52,6 @@ class PresenceViewModel(private val repository: Repository) :  ViewModel()  {
         MutableStateFlow(Result.Loading)
     val nama_mk: StateFlow<Result<List<PresensiResponse>>>
         get() = _nama_mk
-
-    private val _pertemuan: MutableStateFlow<Result<List<RiwayatPresensiResponse>>> =
-        MutableStateFlow(Result.Loading)
-    val pertemuan: StateFlow<Result<List<RiwayatPresensiResponse>>>
-        get() = _pertemuan
-
-
-    fun getRiwayatPresence() {
-        viewModelScope.launch {
-            repository.getRiwayatPresensi()
-                .catch {
-                    _pertemuan.value = Result.Error(it.message.toString())
-                }
-                .collect { pertemuan ->
-                    _pertemuan.value = Result.Success(pertemuan)
-                }
-        }
-    }
-
-
     fun getAllPresence() {
         viewModelScope.launch {
             repository.getPresensi()

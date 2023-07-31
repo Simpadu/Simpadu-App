@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.rie.simpaduapp.ui.components.navigation.BottomBar
 import com.rie.simpaduapp.ui.navigation.Screen
+import com.rie.simpaduapp.ui.screen.presensi.view.HistoryPresence
 import com.rie.simpaduapp.ui.screen.presensi.view.Presence
 import com.rie.simpaduapp.ui.theme.SimpaduAppTheme
 
@@ -57,7 +58,7 @@ fun PresenceScreen(navController: NavHostController) {
                 }
                 when (selectedTabIndex.value) {
                     0 -> Presence()
-//                    1 -> HistoryPresence()
+                    1 -> HistoryPresence( )
                 }
             }
         }
