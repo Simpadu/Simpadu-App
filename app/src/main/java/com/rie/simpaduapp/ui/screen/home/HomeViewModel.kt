@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
+import com.rie.simpaduapp.base.Result
 
 class HomeViewModel (private val repository: Repository) : ViewModel()  {
     private val _minggu: MutableStateFlow<com.rie.simpaduapp.ui.common.UiState<HomeResponse>> = MutableStateFlow(
@@ -32,20 +33,19 @@ class HomeViewModel (private val repository: Repository) : ViewModel()  {
     val ipk: StateFlow<com.rie.simpaduapp.ui.common.UiState<HomeResponse>>
         get() = _ipk
 
-    private val _nama: MutableStateFlow<com.rie.simpaduapp.ui.common.UiState<MahasiswaResponse>> = MutableStateFlow(
-        com.rie.simpaduapp.ui.common.UiState.Loading)
-    val nama: StateFlow<com.rie.simpaduapp.ui.common.UiState<MahasiswaResponse>>
+
+    private val _nama: MutableStateFlow<UiState<MahasiswaResponse>> = MutableStateFlow(UiState.Loading)
+    val nama: MutableStateFlow<UiState<MahasiswaResponse>>
         get() = _nama
 
-    fun getNama(){
+    fun getNamaku() {
         viewModelScope.launch {
             repository.getProfile()
                 .catch {
-                    _nama.value = com.rie.simpaduapp.ui.common.UiState.Error(it.message.toString())
-
+                    _nama.value = UiState.Error(it.message.toString())
                 }
-                .collect{ nama ->
-                    _nama.value = com.rie.simpaduapp.ui.common.UiState.Success(nama)
+                .collect { nama ->
+                    _nama.value = UiState.Success(nama)
                 }
         }
     }
@@ -90,10 +90,10 @@ class HomeViewModel (private val repository: Repository) : ViewModel()  {
         viewModelScope.launch {
             repository.getHome()
                 .catch {
-                    _ipk.value = com.rie.simpaduapp.ui.common.UiState.Error(it.message.toString())
+                    _ipk.value = UiState.Error(it.message.toString())
                 }
                 .collect{ipk ->
-                    _ipk.value = com.rie.simpaduapp.ui.common.UiState.Success(ipk)
+                    _ipk.value = UiState.Success(ipk)
                 }
         }
     }

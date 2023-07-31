@@ -46,7 +46,6 @@ fun PengumumanC(
 ) {
     val context = LocalContext.current
     val openUrl = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        // Handle the result if needed
     }
     Card(
         modifier = modifier

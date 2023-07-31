@@ -52,17 +52,15 @@ fun Ipk(
             shape = RoundedCornerShape(8.dp) ,
             elevation = 8.dp
         ) {
-            viewModel.ipk.collectAsState(initial = com.rie.simpaduapp.ui.common.UiState.Loading).value.let { user ->
+            viewModel.ipk.collectAsState(initial = UiState.Loading).value.let { user ->
                 when (user) {
-                    is com.rie.simpaduapp.ui.common.UiState.Loading -> {
+                    is UiState.Loading -> {
                         viewModel.getIpk()
                     }
-                    is com.rie.simpaduapp.ui.common.UiState.Success -> {
+                    is UiState.Success -> {
                         ipk = user.data.ipk.toString()
                     }
                     else -> {
-                        // Handle other cases here if necessary
-                        // For example, you might want to show an error message or take other actions.
                     }
                 }
             }

@@ -86,7 +86,7 @@ fun ChangePassword(modifier: Modifier = Modifier, navigateBack: () -> Unit,
                                         Toast.makeText(context, it.data.message, Toast.LENGTH_LONG).show()
                                     }
                                     is Result.Error -> {
-                                        Toast.makeText(context, "Password tidak cocok, silahkan masukkan kembali password anda", Toast.LENGTH_LONG).show()
+                                        Toast.makeText(context, "silahkan masukkan kembali keterangan anda", Toast.LENGTH_LONG).show()
                                     }
                                 }
                             })

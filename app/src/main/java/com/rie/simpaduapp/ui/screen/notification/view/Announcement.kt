@@ -37,7 +37,6 @@ fun Announcement(
 
     when (val judul = judulResult.value) {
         is Result.Loading -> {
-            // Tampilkan indikator loading jika diperlukan
         }
         is Result.Success -> {
             val pengumumanList = judul.data
@@ -53,11 +52,9 @@ fun Announcement(
             }
         }
         is Result.Error<*> -> {
-            // Tangani keadaan error jika diperlukan
         }
     }
 
-    // Ambil data saat komponen pertama kali ditampilkan
     LaunchedEffect(Unit) {
         viewModel.getAllPengumuman()
     }

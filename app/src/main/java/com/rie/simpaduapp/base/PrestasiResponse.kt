@@ -7,6 +7,9 @@ data class PrestasiResponse(
     @SerializedName("id")
     val id: Int,
 
+    @SerializedName("nim_mahasiswa")
+    val nim_mahasiswa: String,
+
     @SerializedName("nama_prestasi")
     val nama_prestasi: String,
 

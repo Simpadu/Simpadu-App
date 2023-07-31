@@ -20,8 +20,8 @@ class PrestasiViewModel (private val repository: Repository) :  ViewModel()  {
                 .catch {
                     _nama_prestasi.value = Result.Error(it.message.toString())
                 }
-                .collect { namaprestasiList ->
-                    _nama_prestasi.value = Result.Success(namaprestasiList)
+                .collect { prestasiList ->
+                    _nama_prestasi.value = Result.Success(prestasiList)
                 }
         }
     }
@@ -38,6 +38,11 @@ class PrestasiViewModel (private val repository: Repository) :  ViewModel()  {
         viewModelScope.launch {
             repository.deletePrestasi(id)
             }
-        }
+    }
+    fun CreatePrestasi( nama_prestasi: String, tingkatan_lomba: String,jenis_peserta: String, jumlah_peserta: String,
+                        capaian_prestasi: String, tanggal_lomba: String)
+    =repository.createPrestasi(
+        nama_prestasi,tingkatan_lomba,jenis_peserta,jumlah_peserta,capaian_prestasi,tanggal_lomba
+    )
 
 }

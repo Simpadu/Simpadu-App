@@ -18,7 +18,7 @@ class ProfileViewModel(private val repository: Repository) :  ViewModel()  {
     private val _logout: MutableStateFlow<com.rie.simpaduapp.ui.common.UiState<DefaultResponse>> = MutableStateFlow(
         com.rie.simpaduapp.ui.common.UiState.Loading
     )
-    val logout: StateFlow<com.rie.simpaduapp.ui.common.UiState<DefaultResponse>>
+    val logout: StateFlow<UiState<DefaultResponse>>
         get() = _logout
 
     private val _foto_profil: MutableStateFlow<Result<DefaultResponse>> = MutableStateFlow(
@@ -29,24 +29,6 @@ class ProfileViewModel(private val repository: Repository) :  ViewModel()  {
 
     fun logout() = repository.logout()
 
-//
-//    private val _nama: MutableStateFlow<UiState<MahasiswaResponse>> = MutableStateFlow(UiState.Loading)
-//    private val _email: MutableStateFlow<UiState<MahasiswaResponse>> = MutableStateFlow(UiState.Loading)
-//    val nama: StateFlow<UiState<MahasiswaResponse>>
-//        get() = _nama
-//    val email: StateFlow<UiState<MahasiswaResponse>>
-//        get() = _email
-//  fun getProfile(){
-//      viewModelScope.launch {
-//          repository.getProfile()
-//              .catch {
-//                  _nama.value = UiState.Error(it.message.toString())
-//              }
-//              .collect{nama ->
-//                  _nama.value = UiState.Success(nama)
-//              }
-//      }
-//  }
 
     private val _nama = mutableStateOf("Mahasiswa Guest")
     val nama: State<String> get() = _nama

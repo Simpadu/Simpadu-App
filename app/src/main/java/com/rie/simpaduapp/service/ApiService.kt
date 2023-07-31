@@ -63,9 +63,14 @@ interface ApiService {
     ): DefaultResponse
 
     @DELETE("/api/deletePrestasi/{id}")
+//    suspend fun deletePrestasi(): DefaultResponse
     suspend fun deletePrestasi(
         @Path("id") id: Int
     ):DefaultResponse
+
+//    @DELETE("/api/deletePrestasi/{id}")
+//    Call<DefaultResponse> deletePrestasi(@Path("id")int id):DefaulResponse
+
 
     @POST("/api/resetemail")
     suspend fun createResetEmail(

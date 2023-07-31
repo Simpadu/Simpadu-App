@@ -52,6 +52,12 @@
             android:theme="@style/Theme.SimpaduApp"/>
 
         <activity
+            android:name=".ui.screen.home.prestasi.view.CreatePrestasiActivity"
+            android:exported="false"
+            android:label="CreatePrestasiActivity"
+            android:theme="@style/Theme.SimpaduApp"/>
+
+        <activity
             android:name=".ui.screen.profile.view.EditProfile.EditProfileActivity"
             android:exported="false"
             android:label="EditProfileActivity"

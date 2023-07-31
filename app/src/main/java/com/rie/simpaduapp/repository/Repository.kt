@@ -81,16 +81,12 @@ class Repository(private val apiService: ApiService) {
     ): LiveData<Result<DefaultResponse>> = liveData {
         val json = JSONObject()
         json.put("nama", nama)
-//        json.put("nik", nik)
-//        json.put("tanggal_lahir", tanggal_lahir)
         json.put("tempat_lahir", tempat_lahir)
         json.put("no_hp", no_hp)
         json.put("email", email)
-//        json.put("agama_id", agama_id)
         json.put("alamat", alamat)
         json.put("nama_ibu", nama_ibu)
         json.put("nama_ayah", nama_ayah)
-//        json.put("kode_pos", kode_pos)
         json.put("kecamatan", kecamatan)
         json.put("kelurahan", kelurahan)
         val requestBody = json.toString().toRequestBody("application/json".toMediaType())
@@ -118,6 +114,28 @@ class Repository(private val apiService: ApiService) {
             }
     }
 
+    fun createPrestasi(
+        nama_prestasi: String, tingkatan_lomba: String,jenis_peserta: String, jumlah_peserta: String,
+        capaian_prestasi: String, tanggal_lomba: String
+    ): LiveData<Result<DefaultResponse>> = liveData {
+        val json = JSONObject()
+        json.put("nama_prestasi", nama_prestasi)
+        json.put("tingkatan_lomba", tingkatan_lomba)
+        json.put("jenis_peserta", jenis_peserta)
+        json.put("jumlah_peserta", jumlah_peserta)
+        json.put("capaian_prestasi", capaian_prestasi)
+        json.put("tanggal_lomba", tanggal_lomba)
+        val requestBody = json.toString().toRequestBody("application/json".toMediaTypeOrNull())
+        emit(Result.Loading)
+        try {
+            val response = apiService.createPrestasi(requestBody)
+            emit(Result.Success(response))
+        } catch (e: Exception) {
+            Log.e(TAG, "createPresensi: ${e.message.toString()}")
+            emit(Result.Error(e.message.toString()))
+        }
+    }
+
     fun createPresensi(
         status :String
     ): LiveData<Result<DefaultResponse>> = liveData {
@@ -138,18 +156,22 @@ class Repository(private val apiService: ApiService) {
         emit(response)
     }
 
+
+
     fun getProfile(): Flow<MahasiswaResponse> = flow {
-        try {
-            val responseData = mutableStateOf("")
-            val response = apiService. getProfile()
-            responseData.value = response.nama.toString()
-//            responseData.value = response.foto_profil.toString()
-//            responseData.value = response.email.toString()
-            emit(response)
-        } catch (e: Exception) {
-            Log.e(TAG, "getProfile: ${e.message.toString()}")
-            }
+        val response = apiService. getProfile()
+        val responseData = mutableStateOf("")
+        responseData.value = response.nama.toString()
+        emit(response)
     }
+
+
+    fun getAllPengumuman(): Flow<List<PengumumanResponse>> = flow {
+        val response = apiService.getPengumuman()
+        emit(response)
+    }
+
+
 
 
 
@@ -168,10 +190,7 @@ class Repository(private val apiService: ApiService) {
     }
 
 
-    fun getAllPengumuman(): Flow<List<PengumumanResponse>> = flow {
-        val response = apiService.getPengumuman()
-        emit(response)
-    }
+
 
     fun getPresensi() = flow<List<PresensiResponse>> {
         val response = apiService.getPresensi()
@@ -183,38 +202,13 @@ class Repository(private val apiService: ApiService) {
         emit(response)
     }
 
-//    fun getPengumumanById(id: Int): Flow<PengumumanResponse> = flow {
-//        val response = apiService.getPengumumanById(id).first()
-//        emit(response)
-//        }
 
     fun getAllPrestasi(): Flow<List<PrestasiResponse>> = flow {
         val response = apiService.getAllPrestasi()
         emit(response)
     }
 
-    fun createPrestasi(
-        nama_prestasi: String, tingkatan_lomba: String,jenis_peserta: String, jumlah_peserta: Int,
-        capaian_prestasi: String, tanggal_lomba: String, pembina: String
-    ): LiveData<Result<DefaultResponse>> = liveData {
-        val json = JSONObject()
-        json.put("nama_prestasi", nama_prestasi)
-        json.put("tingkatan_lomba", tingkatan_lomba)
-        json.put("jenis_peserta", jenis_peserta)
-        json.put("jumlah_peserta", jumlah_peserta)
-        json.put("capaian_prestasi", capaian_prestasi)
-        json.put("tanggal_lomba", tanggal_lomba)
-        json.put("pembina", pembina)
-        val requestBody = json.toString().toRequestBody("application/json".toMediaTypeOrNull())
-        emit(Result.Loading)
-        try {
-            val response = apiService.createPrestasi(requestBody)
-            emit(Result.Success(response))
-        } catch (e: Exception) {
-            Log.e(TAG, "createPresensi: ${e.message.toString()}")
-            emit(Result.Error(e.message.toString()))
-            }
-    }
+
 
     fun updatePrestasi(
        id: Int, nama_prestasi: String, tingkatan_lomba: String,jenis_peserta: String, jumlah_peserta: Int,
@@ -345,6 +339,16 @@ class Repository(private val apiService: ApiService) {
             Log.e(TAG, "deletePrestasi: ${e.message.toString()}")
             }
         }
+
+//    fun deletePrestasi(id: Int): LiveData<Result<DefaultResponse>> = liveData {
+//        try {
+//            val response = apiService.deletePrestasi(id)
+//            Log.d(TAG, response.toString())
+//            emit(Result.Success(response))
+//        } catch (e: Exception) {
+//            Log.e(TAG, "prestasiRepository: ${e.message.toString()}")
+//        }
+//    }
 
     fun updateWisuda(
         pengalaman_organisasi: String, pengalaman_pelatihan: String, pengalaman_prestasi: String,

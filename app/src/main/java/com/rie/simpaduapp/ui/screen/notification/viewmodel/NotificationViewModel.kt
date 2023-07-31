@@ -16,7 +16,6 @@ class NotificationViewModel(private val repository: Repository) :  ViewModel()  
     val judul: StateFlow<Result<List<PengumumanResponse>>>
         get() = _judul
 
-
     fun getAllPengumuman() {
         viewModelScope.launch {
             repository.getAllPengumuman()
