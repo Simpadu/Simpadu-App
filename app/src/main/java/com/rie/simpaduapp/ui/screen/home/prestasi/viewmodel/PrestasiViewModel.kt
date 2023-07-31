@@ -34,15 +34,25 @@ class PrestasiViewModel (private val repository: Repository) :  ViewModel()  {
         capaian_prestasi
     )
 
-    fun deletePrestasi(id: Int) {
-        viewModelScope.launch {
-            repository.deletePrestasi(id)
-            }
-    }
     fun CreatePrestasi( nama_prestasi: String, tingkatan_lomba: String,jenis_peserta: String, jumlah_peserta: String,
                         capaian_prestasi: String, tanggal_lomba: String)
     =repository.createPrestasi(
         nama_prestasi,tingkatan_lomba,jenis_peserta,jumlah_peserta,capaian_prestasi,tanggal_lomba
     )
 
+    private val _id: MutableStateFlow<Result<List<PrestasiResponse>>> =
+        MutableStateFlow(Result.Loading)
+    val id: StateFlow<Result<List<PrestasiResponse>>>
+    get()=_id
+    fun deletePrestasi(id: Int) {
+        viewModelScope.launch {
+            try {
+                repository.deletePrestasi(id)
+                getPrestasi()
+            } catch (e: Exception) {
+                _nama_prestasi.value = Result.Error("Failed to delete prestasi: ${e.message}")
+            }
+            }
+        }
 }
+

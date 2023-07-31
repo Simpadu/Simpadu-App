@@ -20,7 +20,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.rie.simpaduapp.R
 import com.rie.simpaduapp.base.PengumumanResponse
-import com.rie.simpaduapp.ui.components.Category.Magang.Magang
 import com.rie.simpaduapp.ui.components.Notifikasi.PengumumanC
 import com.rie.simpaduapp.ui.screen.notification.viewmodel.NotificationViewModel
 import com.rie.simpaduapp.base.Result

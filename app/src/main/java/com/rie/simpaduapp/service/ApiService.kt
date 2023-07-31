@@ -62,16 +62,6 @@ interface ApiService {
         @Body updatePrestasi: RequestBody
     ): DefaultResponse
 
-    @DELETE("/api/deletePrestasi/{id}")
-//    suspend fun deletePrestasi(): DefaultResponse
-    suspend fun deletePrestasi(
-        @Path("id") id: Int
-    ):DefaultResponse
-
-//    @DELETE("/api/deletePrestasi/{id}")
-//    Call<DefaultResponse> deletePrestasi(@Path("id")int id):DefaulResponse
-
-
     @POST("/api/resetemail")
     suspend fun createResetEmail(
         @Body ResetEmailInput: RequestBody
@@ -141,6 +131,16 @@ interface ApiService {
     @PUT("/api/updateWisuda")
     suspend fun updateWisuda(
         @Body updateWisuda: RequestBody
+    ):DefaultResponse
+
+    @PUT("/api/updateMagang")
+    suspend fun updateMagang(
+        @Body updateMagang: RequestBody
+    ):DefaultResponse
+
+    @DELETE("/api/deletePrestasi/{id}")
+    suspend fun deletePrestasi(
+        @Path("id") id: Int,
     ):DefaultResponse
 }
 

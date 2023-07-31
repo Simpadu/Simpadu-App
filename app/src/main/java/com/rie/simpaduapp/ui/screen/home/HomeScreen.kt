@@ -64,10 +64,11 @@ fun HomeScreen(
                         modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text("Hi ")
+//                        Text("Hi ")
                         Text(
-                            text = namak,
-                            fontSize = 16.sp,
+                            text ="Hai, MahasiswaGuest",
+                            color = Color.Gray,
+                            fontSize = 17.sp,
                             fontWeight = FontWeight.Bold
                         )
                     }

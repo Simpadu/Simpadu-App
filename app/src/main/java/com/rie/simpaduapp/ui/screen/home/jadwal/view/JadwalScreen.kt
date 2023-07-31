@@ -10,7 +10,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.rie.simpaduapp.R
 import com.rie.simpaduapp.ui.components.Category.Jadwal.Jadwal
-import com.rie.simpaduapp.ui.components.Category.Magang.Magang
+
 
 
 

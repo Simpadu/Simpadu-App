@@ -26,7 +26,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
-//import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -281,14 +280,14 @@ fun EditProfile(modifier: Modifier = Modifier, navigateBack: () -> Unit,
                                 ).observe(lifecycleOwner, { result ->
                                     when (result) {
                                         is Result.Loading -> {
-                                            // Handle loading state if needed
+
                                         }
                                         is Result.Success -> {
-                                            // Handle success state if needed
+
                                             Toast.makeText(context, result.data.message, Toast.LENGTH_LONG).show()
                                         }
                                         is Result.Error -> {
-                                            // Handle error state if needed
+
                                             Toast.makeText(context, "Terjadi kesalahan saat update profile", Toast.LENGTH_LONG).show()
                                         }
                                     }

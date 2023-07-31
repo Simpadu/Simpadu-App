@@ -80,7 +80,6 @@ fun ChangePassword(modifier: Modifier = Modifier, navigateBack: () -> Unit,
                             viewModel.createResetEmail(keteranganInput).observe(lifecycleOwner, {
                                 when (it) {
                                     is Result.Loading -> {
-                                        // Handle loading state if needed
                                     }
                                     is Result.Success -> {
                                         Toast.makeText(context, it.data.message, Toast.LENGTH_LONG).show()

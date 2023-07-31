@@ -17,7 +17,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.rie.simpaduapp.R
-import com.rie.simpaduapp.ui.components.Category.Magang.Magang
 import com.rie.simpaduapp.ui.components.Kehadiran
 import com.rie.simpaduapp.ui.screen.ViewModelFactory
 import com.rie.simpaduapp.ui.screen.home.prestasi.viewmodel.PrestasiViewModel

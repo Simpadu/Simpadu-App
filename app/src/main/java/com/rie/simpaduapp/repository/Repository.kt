@@ -151,10 +151,6 @@ class Repository(private val apiService: ApiService) {
         }
     }
 
-    fun getResetEmail(): Flow<List<ResetEmailReaspon>> = flow {
-        val response = apiService.getResetEmail()
-        emit(response)
-    }
 
 
 
@@ -251,21 +247,6 @@ class Repository(private val apiService: ApiService) {
             }
 
 
-
-//    suspend fun createById(id: Int, status: String) = flow {
-//        val json = JSONObject()
-//        json.put("status", status)
-//        val jsonString = json.toString()
-//        val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
-//
-//        try {
-//            val response = apiService.createPresensiById(id, requestBody)
-//            emit(Result.Success(response))
-//        } catch (e: Exception) {
-//            emit(Result.Error(e.message.toString()))
-//            }
-//        }
-
     suspend fun createById(id: Int, status: String) = flow<Result<DefaultResponse>> {
         val json = JSONObject()
         json.put("status", status)
@@ -330,29 +311,10 @@ class Repository(private val apiService: ApiService) {
         }
     }
 
-    fun deletePrestasi(id: Int): LiveData<Result<DefaultResponse>> = liveData(Dispatchers.IO) {
-        try {
-            val respone = apiService.deletePrestasi(id)
-            Log.d(TAG, respone.toString())
-            emit(Result.Success(respone))
-        } catch (e: Exception) {
-            Log.e(TAG, "deletePrestasi: ${e.message.toString()}")
-            }
-        }
-
-//    fun deletePrestasi(id: Int): LiveData<Result<DefaultResponse>> = liveData {
-//        try {
-//            val response = apiService.deletePrestasi(id)
-//            Log.d(TAG, response.toString())
-//            emit(Result.Success(response))
-//        } catch (e: Exception) {
-//            Log.e(TAG, "prestasiRepository: ${e.message.toString()}")
-//        }
-//    }
 
     fun updateWisuda(
         pengalaman_organisasi: String, pengalaman_pelatihan: String, pengalaman_prestasi: String,
-        nama_ayah: String, alamat_ortu: String,judul_tugas_akhir:String
+        nama_ayah: String, alamat_ortu: String,judul_tugas_akhir:String,tanggal_ujian:String
     ): LiveData<Result<DefaultResponse>> = liveData {
         val json = JSONObject()
         json.put("pengalaman_organisasi", pengalaman_organisasi)
@@ -361,6 +323,7 @@ class Repository(private val apiService: ApiService) {
         json.put("nama_ayah", nama_ayah)
         json.put("alamat_ortu", alamat_ortu)
         json.put("judul_tugas_akhir", judul_tugas_akhir)
+        json.put("tanggal_ujian", tanggal_ujian)
         val requestBody = json.toString().toRequestBody("application/json".toMediaType())
         emit(Result.Loading)
         try {
@@ -370,6 +333,26 @@ class Repository(private val apiService: ApiService) {
         } catch (e: Exception) {
             Log.e(TAG, "updateWisuda: ${e.message.toString()}")
             }
+        }
+
+    fun updateMagang(nama:String, judul:String, tempat_magang:String): LiveData<Result<DefaultResponse>> = liveData {
+        val json = JSONObject()
+        json.put("nama", nama)
+        json.put("judul", judul)
+        json.put("tempat_magang", tempat_magang)
+        val requestBody = json.toString().toRequestBody("application/json".toMediaType())
+        emit(Result.Loading)
+        try {
+            val respone = apiService.updateMagang(requestBody)
+            Log.d(TAG, respone.toString())
+            emit(Result.Success(respone))
+        } catch (e: Exception) {
+            Log.e(TAG, "updateMagang: ${e.message.toString()}")
+        }
+    }
+
+    suspend fun deletePrestasi(id: Int) {
+        apiService.deletePrestasi(id)
         }
 
     companion object {
