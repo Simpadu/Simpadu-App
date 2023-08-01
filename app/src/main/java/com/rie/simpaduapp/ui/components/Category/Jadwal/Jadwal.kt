@@ -27,12 +27,7 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import com.rie.simpaduapp.R
 
 @Composable
-fun Jadwal() {
-    JadwalContent()
-}
-
-@Composable
-fun JadwalContent(
+fun Jadwal(
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -53,18 +48,18 @@ fun JadwalContent(
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Hai",
+                        text = "Semester 1",
                         color = Color.Gray,
                         fontSize = 15.sp
                     )
                     Text(
-                        text = "John Doe",
+                        text = "Kelas C",
                         color = Color.Gray,
                         fontSize = 17.sp,
                         fontWeight = Bold
                     )
                     Text(
-                        text = "john.doe@example.com",
+                        text = "2022/2023",
                         color = Color.DarkGray,
                         fontSize = 13.sp,
                         modifier = Modifier.padding(top = 7.dp)

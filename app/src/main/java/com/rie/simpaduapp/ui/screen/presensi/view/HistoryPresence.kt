@@ -32,7 +32,7 @@ fun HistoryPresence(
 
     when (val result = matkulResult) {
         is Result.Loading -> {
-            // TODO: Show loading UI
+
         }
         is Result.Success -> {
             val presensiList = result.data
@@ -52,7 +52,6 @@ fun HistoryPresence(
             }
         }
         is Result.Error<*> -> {
-            // TODO: Show error UI
         }
     }
 

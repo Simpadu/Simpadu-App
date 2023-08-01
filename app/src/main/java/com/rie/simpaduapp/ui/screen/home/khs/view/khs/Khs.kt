@@ -14,12 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.rie.simpaduapp.R
 
 @Composable
-fun Khs() {
-    KhsContent()
-}
-
-@Composable
-fun KhsContent(
+fun Khs(
     modifier: Modifier = Modifier
 ) {
     Column(

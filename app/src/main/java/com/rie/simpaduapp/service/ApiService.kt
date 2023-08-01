@@ -49,6 +49,11 @@ interface ApiService {
     @GET("/api/getAllPrestasi")
     suspend fun getAllPrestasi(): List<PrestasiResponse>
 
+    @POST("/api/konsultasi")
+    suspend fun createRiwayatKonsultasiKhs(
+        @Body keteranganInput: RequestBody
+    ): DefaultResponse
+
     @POST("/api/createPrestasi")
     suspend fun createPrestasi(
         @Body prestasiInput: RequestBody
@@ -81,6 +86,9 @@ interface ApiService {
 
     @GET("/api/ukt")
     suspend fun getukt(): UktResponse
+
+    @GET("/api/konsultasi")
+    fun geRiwayatKonsultasiKhs(): RiwayatKhsResponse
 
 
     @GET("/api/getMahasiswa")

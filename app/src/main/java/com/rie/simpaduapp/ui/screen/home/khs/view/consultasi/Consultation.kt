@@ -14,12 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.rie.simpaduapp.R
 
 @Composable
-fun GenerateKhs() {
-    GenerateKhsContent()
-}
-
-@Composable
-fun GenerateKhsContent(
+fun Consultation(
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -30,7 +25,7 @@ fun GenerateKhsContent(
             .padding(16.dp)
     ) {
         Text(
-            text = "Cetak KHS",
+            text = "Konsultasi KHS",
             style = MaterialTheme.typography.h4
         )
 

@@ -19,6 +19,7 @@ import org.json.JSONObject
 import java.io.InputStream
 import java.time.LocalDate
 import com.rie.simpaduapp.base.Result
+import com.rie.simpaduapp.ui.common.UiState
 import kotlinx.coroutines.time.delay
 
 class Repository(private val apiService: ApiService) {
@@ -87,6 +88,20 @@ class Repository(private val apiService: ApiService) {
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
             }
+    }
+
+    fun createKonsultasiKhs(keterangan : String) : LiveData<Result<DefaultResponse>> = liveData {
+        val json = JSONObject()
+        json.put("keterangan", keterangan)
+        val requestBody = json.toString().toRequestBody("application/json".toMediaTypeOrNull())
+        emit(Result.Loading)
+        try {
+            val response = apiService.createRiwayatKonsultasiKhs(requestBody)
+            emit(Result.Success(response))
+        } catch (e: Exception) {
+            Log.e(TAG, "createRiwayatKonsultasiKhs: ${e.message.toString()}")
+            emit(Result.Error(e.message.toString()))
+        }
     }
 
     fun createPrestasi(
@@ -175,6 +190,15 @@ class Repository(private val apiService: ApiService) {
             emit(response)
         } catch (e: Exception) {
             Log.e(TAG, "getukt: ${e.message.toString()}")
+        }
+    }
+
+    fun getRiwayaKonsultasiKhs(): Flow<UiState<RiwayatKhsResponse>> = flow {
+        try {
+            val response = apiService.geRiwayatKonsultasiKhs()
+            emit(UiState.Success(response))
+        } catch (e: Exception) {
+            emit(UiState.Error(e.message ?: "Unknown error"))
         }
     }
 

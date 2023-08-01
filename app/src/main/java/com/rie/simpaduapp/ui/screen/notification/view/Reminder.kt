@@ -25,6 +25,6 @@ fun Reminder(
             .padding(horizontal = 16.dp),
     ) {
         Spacer(modifier = Modifier.height(20.dp))
-//        Notifikasi()
+        Notifikasi()
     }
 }
